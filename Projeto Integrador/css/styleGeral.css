@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Akatab:wght@400;500;600;700;800;900&display=swap');
+
+button, a, p, h1, label, input {
+    font-family: "Akatab", sans-serif;
+    text-decoration: none;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    background-color: rgb(255, 255, 255);
+    height: 70%;
+    box-shadow: 0px 1px 6px 2px #c9c9c9;
+    padding: 2%
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo, .logoFoo {
+    max-width: 15%;
+}
+
+#entrar {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+footer {
+    background-color: #2D2D2D;
+    height: 45%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+}
+
+#social {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+#social a, p{
+    color: white;
+}
