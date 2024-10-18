@@ -43,7 +43,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5%;
+    gap: 15px;
 }
 
 #social {
@@ -56,4 +56,11 @@ footer {
 
 #social a, p{
     color: white;
+}
+
+button{
+    background-color: #569B51;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
 }

@@ -1,0 +1,20 @@
+main{
+    padding: 5% 6% 5% 6%;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 2% 20% 2% 20%;
+    gap: 30px;
+    
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
