@@ -43,7 +43,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 30px;
 }
 
 #social {
@@ -58,9 +58,41 @@ footer {
     color: white;
 }
 
+#social a:hover {
+    color: #569B51;
+}
+
 button{
     background-color: #569B51;
     border: none;
     border-radius: 8px;
     padding: 5px 10px;
+    color: white;
+}
+
+button:hover {
+    background-color: #2D2D2D;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#entrar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 15px;
+    font-size: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#entrar a {
+    color: #569B51;
+}
+
+#entrar a:hover {
+    color: #2D2D2D;
+    text-decoration: underline;
+    transition: 0.5s;
 }

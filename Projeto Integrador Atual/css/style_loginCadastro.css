@@ -9,12 +9,53 @@ h1 {
 form {
     display: flex;
     flex-direction: column;
-    padding: 2% 20% 2% 20%;
     gap: 30px;
-    
+    margin: 2% 30%;
 }
 
 label {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+
+
+}
+
+input {
+    padding: 2% 3%;
+    border-radius: 8px;
+    border-color: rgb(186, 186, 186);
+    font-size: 15px;
+}
+
+section h1 {
+    color: #569B51;
+    font-size: 50px;
+}
+
+section {
+    gap: 5px;
+}
+
+section button {
+    padding: 1% 2%;
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+section p {
+    text-align: center;
+    color: #2D2D2D;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+p a {
+    color: rgb(158, 0, 0);
+}
+
+p a:hover {
+    text-decoration: underline;
+    color: #2D2D2D;
 }
