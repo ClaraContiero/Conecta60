@@ -1,0 +1,68 @@
+#imagens p, li {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+    line-height: 2.8rem;
+    max-width: 510px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10% 10%;
+}
+
+
+.infos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+}
+
+.lista li {
+    margin-inline-start: 40px;
+}
+
+#botoes button {
+    flex-direction: row;
+    margin-top: 1rem;
+    padding: 2% 5%;
+    font-size: 1.5rem;
+}
+
+#objetivos {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    margin-top: 6%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #dfdfdf;
+    align-items: center;
+    border-radius: 2rem;
+    width: 18rem;
+    padding: 2rem;
+}
+
+.card h1 {
+    font-size: 3rem;
+    color: #3A6D36;
+    text-align: center;
+}
+
+.card p {
+    color: #2D2D2D;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: center;
+    max-width: fit-content;
+}
