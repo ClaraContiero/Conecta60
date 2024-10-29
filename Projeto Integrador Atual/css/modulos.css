@@ -1,0 +1,67 @@
+#modulos {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+}
+
+#titulo-pag {
+margin-bottom: 8%;
+color: #569B51;
+font-size: 3rem;
+text-align: center;
+}
+
+.conteudos {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2%;
+
+}
+
+.modulo-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.modulo-principal h1 {
+    border-bottom: solid 2px ;
+    padding: 1%;
+
+}
+
+.modulo-principal h1:hover {
+    background-color: rgb(226, 226, 226);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition-duration: 0.45s;
+    cursor: pointer;
+}
+
+.conteudos h2 {
+    margin-bottom: 2%;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.conteudo button {
+    font-size: 1.2rem;
+    color: #2D2D2D;
+    font-weight: 500;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid rgb(216, 0, 0);
+}
+.conteudo button:hover {
+    background-color: rgb(216, 0, 0);
+    color: white;
+    scale: 1.10;
+
+}
+

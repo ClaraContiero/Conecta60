@@ -1,14 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Akatab:wght@400;500;600;700;800;900&display=swap');
 
-button, a, p, h1, label, input, li {
+button, a, p, h1, h2, h3, label, input, li {
     font-family: "Akatab", sans-serif;
     text-decoration: none;
+    color: #2D2D2D;
 
 }
 
 * {
     margin: 0;
     padding: 0;
+}
+
+main{
+    margin: 10% 6% 10%;
 }
 
 body {
@@ -101,7 +106,7 @@ button:hover {
     color: white;
     border-color: white;
     background-color: #2D2D2D;
-    transition: 0.5s;
+    transition: 0.45s;
 }
 
 #comece {
