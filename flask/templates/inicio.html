@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/pagina_inicial/inicial.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <title>Página Inicial</title>
+
+</head>
+
+<body>
+
+    {%include 'header.html'%}
+
+    {%block content%}
+
+    <main>
+        <section id="imagens">
+            <div class="infos">
+                <img src="{{url_for('static', filename='img/Group 1.png')}}" alt="">
+                <div id="aluProf">
+                    <p> Para qualquer pessoa acima de 60 anos que queira dominar as boas práticas básicas da tecnologia.
+                    </p>
+                    <div id="botoes">
+                        <button>Alunos</button>
+                        <button>Professores</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="infos">
+                <div class="lista">
+                    <p>Exercícios simples e intuitivos para praticar seus conhecimentos:</p>
+                    <ul>
+                        <li>Perguntas teóricas</li>
+                        <li>Prática de digitação</li>
+                        <li>Encontre os pontos corretos</li>
+                    </ul>
+                </div>
+                <img src="{{url_for('static', filename='img/Group 2.png')}}" alt="">
+            </div>
+
+            <div class="infos">
+                <img src="{{url_for('static', filename='img/Group 3.png')}}" alt="">
+                <div class="lista">
+                    <p>Aprenda a navegar na internet de forma segura e sem preocupações</p>
+                    <ul>
+                        <li>Descubra como fugir das FAKE NEWS</li>
+                        <li>Aprenda a criar senhas seguras</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="objetivos">
+            <div class="card">
+                <h1>
+                    Missão
+                </h1>
+                <p>
+                    Integrar idosos em ambientes virtuais e promover a diversidade etária na web.
+                </p>
+            </div>
+
+            <div class="card">
+                <h1>
+                    Visão
+                </h1>
+                <p>
+                    Capacitar e ensinar idosos a lidarem com a tecnologia para promover sua autonomia e bem-estar. </p>
+            </div>
+
+            <div class="card">
+                <h1>
+                    Valores
+                </h1>
+                <p>
+                    Paciência e acolhimento são fatores essenciais para alcançarmos nosso objetivo de incluir o público
+                    60+ na web. </p>
+            </div>
+        </section>
+        <button id="comece">COMECE AGORA MESMO</button>
+    </main>
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+</body>
+
+</html>
