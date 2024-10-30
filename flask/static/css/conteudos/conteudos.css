@@ -1,0 +1,14 @@
+.elementosCriados {
+    display: flex;
+    flex-direction: column;
+}
+
+.elementosCriados h1 {
+    color: #2D2D2D;
+    font-size: 3rem;
+}
+
+.elementosCriados article {
+    color: #2D2D2D;
+    font-size: 1.4rem;
+}

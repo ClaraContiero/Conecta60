@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Akatab:wght@400;500;600;700;800;900&display=swap');
 
-button, a, p, h1, h2, h3, label, input, li {
+button, a, p, h1, h2, h3, label, input, li, article {
     font-family: "Akatab", sans-serif;
     text-decoration: none;
     color: #2D2D2D;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/conteudos/conteudos.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+
+    {%include 'header.html'%}
+
+    {%block content%}
+
+
+    <script>
+    const main = document.getElementsByName("main");
+    const novoT = document.createElement("h1");
+    novoT.innerHTML = "Titulo";
+    novoT.style.backgroundColor = "blue";
+    novoT.style.margin = "500x";
+    main.appendChild(novoT);
+
+
+    </script>
+
+
+    <main>
+
+   
+
+
+    </main>
+
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+
+
+</body>
+
+</html>

@@ -16,7 +16,6 @@ text-align: center;
     background-color: white;
     border-radius: 8px;
     padding: 2%;
-
 }
 
 .modulo-principal {
@@ -48,6 +47,7 @@ text-align: center;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 5%;
 }
 
 .conteudo button {

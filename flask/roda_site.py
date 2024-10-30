@@ -21,6 +21,14 @@ def cadastro():
 def login():
     return render_template('login.html')
 
+@app.route("/modulos")
+def modulos():
+    return render_template('modulos.html')
+
+@app.route("/conteudos")
+def conteudos():
+    return render_template('conteudos.html')
+
 
 if __name__ == "__main__":
     app.run(debug = True)
