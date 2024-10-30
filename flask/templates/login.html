@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login_cadastro/style_loginCadastro.css')}}">
+    <title>Entrar</title>
+</head>
+
+<body>
+    
+    {%include 'header.html'%}
+
+    {%block content%}
+
+    <main>
+        <section id="cadastro">
+            <h1>ENTRAR</h1>
+            <form action="" method="get">
+                <label>
+                    Email *
+                    <input type="email" name="email" required>
+                </label>
+                <label>
+                    Senha *
+                    <input type="password" name="senha" required>
+                </label>
+                <button>ENTRAR</button>
+                <p>Não possui uma conta? <a href="./cadastro.html">Crie uma conta</a></p>
+            </form>
+        </section>
+    </main>
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+
+</body>
+
+</html>

@@ -6,12 +6,20 @@ app = Flask(__name__)
 
 #rotas das página do site
 @app.route("/")
-
 def inicial():
     return render_template('inicio.html')
 
+@app.route("/cadProfAluno")
+def cadProfAluno():
+    return render_template('cadastroProfAlun.html')
 
+@app.route("/cadastro")
+def cadastro():
+    return render_template('cadastro.html')
 
+@app.route("/login")
+def login():
+    return render_template('login.html')
 
 
 if __name__ == "__main__":
