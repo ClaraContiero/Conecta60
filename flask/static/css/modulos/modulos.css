@@ -13,6 +13,8 @@ text-align: center;
 }
 
 .conteudos {
+    display: none;
+    flex-direction: column;
     background-color: white;
     border-radius: 8px;
     padding: 2%;
@@ -24,22 +26,8 @@ text-align: center;
     gap: 2rem;
 }
 
-.modulo-principal h1 {
-    border-bottom: solid 2px ;
-    padding: 1%;
-
-}
-
-.modulo-principal h1:hover {
-    background-color: rgb(226, 226, 226);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    transition-duration: 0.45s;
-    cursor: pointer;
-}
-
 .conteudos h2 {
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 .conteudo {
@@ -47,7 +35,8 @@ text-align: center;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 2%;
+  
 }
 
 .conteudo button {
@@ -64,5 +53,31 @@ text-align: center;
     color: white;
     scale: 1.10;
 
+}
+
+.tit-modulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 2px ;
+    padding: 1%;
+
+}
+
+.tit-modulo:hover {
+    background-color: rgb(226, 226, 226);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition-duration: 0.45s;
+    cursor: pointer;
+    /* transform: rotate(90deg);  */
+
+}
+
+.tit-modulo p {
+    color: #2D2D2D;
+    font-size: 1.2rem;
+    transition: 0.4s;
 }
 

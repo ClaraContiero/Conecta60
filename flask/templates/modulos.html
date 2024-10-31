@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/modulos/modulos.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+
+    <script src="{{url_for('static', filename='js/modulo.js')}}" defer></script>
+
+
     <title>Document</title>
 </head>
 
 <body>
-   
+
     {%include 'header.html'%}
 
     {%block content%}
@@ -18,21 +22,61 @@
     <main>
         <h1 id="titulo-pag">Conteúdos para ler e praticar...</h1>
 
-    <section id="modulos">  
-        <div class="modulo-principal">
-            <h1>(id_modulo) Título do módulo</h1>
-            <div class="conteudos">
-                <h2>Descrição do módulo</h2>
-                <div class="conteudo">
-                    <h3>(id_conteudo): Nome</h3>
-                    <button>Começar</button>
+        <section id="modulos">
+            <div class="modulo-principal">
+                <div class="tit-modulo">
+                    <h1>(id_modulo) Título do módulo</h1>
+                    <p class="toggle">▶</p>
                 </div>
-
+                <div class="conteudos">
+                    <h2>● Descrição do módulo</h2>
+                    <div class="conteudo">
+                        <h3>(id_conteudo): Nome</h3>
+                        <button>Começar</button>
+                    </div>
+                    <div class="conteudo">
+                        <h3>(id_conteudo): Nome</h3>
+                        <button>Começar</button>
+                    </div>
+                    <div class="conteudo">
+                        <h3>(id_conteudo): Nome</h3>
+                        <button>Começar</button>
+                    </div>
+                </div>
             </div>
-            
-        </div>
 
-    </section>
+
+
+            <div class="modulo-principal">
+                <div class="tit-modulo">
+                    <h1>(id_modulo) Título do módulo</h1>
+                    <p class="toggle">▶</p>
+                </div>
+                <div class="conteudos">
+                    <h2>● Descrição do módulo</h2>
+                    <div class="conteudo">
+                        <h3>(id_conteudo): Nome</h3>
+                        <button>Começar</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modulo-principal">
+                <div class="tit-modulo">
+                    <h1>(id_modulo) Título do módulo</h1>
+                    <p class="toggle">▶</p>
+                </div>
+                <div class="conteudos">
+                    <h2>● Descrição do módulo</h2>
+                    <div class="conteudo">
+                        <h3>(id_conteudo): Nome</h3>
+                        <button>Começar</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
 
     {%endblock%}
