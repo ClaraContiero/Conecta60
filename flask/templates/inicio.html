@@ -24,8 +24,8 @@
                     <p> Para qualquer pessoa acima de 60 anos que queira dominar as boas práticas básicas da tecnologia.
                     </p>
                     <div id="botoes">
-                        <button>Alunos</button>
-                        <button>Professores</button>
+                        <a href="login"><button>Alunos</button></a>
+                        <a href="login"><button>Professores</button></a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,6 @@
                     <ul>
                         <li>Perguntas teóricas</li>
                         <li>Prática de digitação</li>
-                        <li>Encontre os pontos corretos</li>
                     </ul>
                 </div>
                 <img src="{{url_for('static', filename='img/Group 2.png')}}" alt="">
@@ -81,7 +80,7 @@
                     60+ na web. </p>
             </div>
         </section>
-        <button id="comece">COMECE AGORA MESMO</button>
+        <a href="login"><button id="comece">COMECE AGORA MESMO</button></a>
     </main>
 
     {%endblock%}

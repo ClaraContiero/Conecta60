@@ -95,25 +95,19 @@ button:hover {
     gap: 50px;
 }
 
-#entrar a {
+#cadastre {
     color: #569B51;
     border: 1.5px solid #569B51;
     border-radius: 8px;
     padding: 5px 10px;
 }
 
-#entrar a:hover {
+#cadastre:hover {
     color: white;
     border-color: white;
     background-color: #2D2D2D;
     transition: 0.45s;
 }
 
-#comece {
-    max-width: fit-content;
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 1% 2%;
-    margin-top: 5%;
-}
+
 
