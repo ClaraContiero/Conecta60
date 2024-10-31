@@ -77,13 +77,14 @@ button{
     border-radius: 8px;
     padding: 5px 10px;
     color: white;
+    transition: 0.5s;
+
 }
 
 button:hover {
     background-color: #2D2D2D;
     color: white;
     cursor: pointer;
-    transition: 0.5s;
 }
 
 #entrar {
@@ -100,13 +101,14 @@ button:hover {
     border: 1.5px solid #569B51;
     border-radius: 8px;
     padding: 5px 10px;
+    transition: 0.45s;
+
 }
 
 #cadastre:hover {
     color: white;
     border-color: white;
     background-color: #2D2D2D;
-    transition: 0.45s;
 }
 
 
