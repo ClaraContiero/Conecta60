@@ -1,14 +1,47 @@
-.elementosCriados {
+#conteudo {
     display: flex;
     flex-direction: column;
+    background-color: white;
+    max-width: 100%;
+    height:auto;
+    align-items: center;
+    padding: 3rem;
+    gap: 1rem;
+
 }
 
-.elementosCriados h1 {
+textarea {
+    width: 90%;
+    background-color: white;
+    border: none;
+    padding: 1rem;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: start;
+    /* line-height: 2.5rem; */
+    overflow: hidden;
     color: #2D2D2D;
-    font-size: 3rem;
+    
 }
 
-.elementosCriados article {
-    color: #2D2D2D;
-    font-size: 1.4rem;
+#titulo {
+    font-size: 4rem;
+    font-weight: 500;
+    height: 5rem;
+
 }
+
+#subtitulo {
+    font-size: 2rem;
+    font-weight: 500;
+    height: 5rem;
+
+}
+
+.textos {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+
+}
+
+

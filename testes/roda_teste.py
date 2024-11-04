@@ -44,8 +44,7 @@ class UserForm(FlaskForm):
     submit = SubmitField('Enviar')
 
 
-
-
+#para puxar imagens: https://wtforms.readthedocs.io/en/2.3.x/fields/
 
 #rotas das página do site
 
