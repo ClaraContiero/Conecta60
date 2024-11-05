@@ -48,6 +48,11 @@ class UserForm(FlaskForm):
     submit = SubmitField('Enviar')
 
 
+<<<<<<< HEAD
+=======
+#para puxar imagens: https://wtforms.readthedocs.io/en/2.3.x/fields/
+
+>>>>>>> 1f55739992f2e3382342212ba8b984320ddb9e99
 #rotas das página do site
 @app.route("/")
 def name():

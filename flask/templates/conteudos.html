@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
     <title>Document</title>
 
-
 </head>
 
 <body>
@@ -17,22 +16,18 @@
 
     {%block content%}
 
-
-    <script>
-    const main = document.getElementsByName("main");
-    const novoT = document.createElement("h1");
-    novoT.innerHTML = "Titulo";
-    novoT.style.backgroundColor = "blue";
-    novoT.style.margin = "500x";
-    main.appendChild(novoT);
-
-
-    </script>
-
-
     <main>
+        <section id="conteudo">
+            <!-- lembrando que esses detalhes serão mutáveis -->
+            <textarea id="titulo" placeholder="Digite um título..." maxlength="50"></textarea>
+            <textarea id="subtitulo" placeholder="Digite um subtítulo..." maxlength="100"></textarea>
 
-   
+
+            <textarea name="" class="textos" placeholder="Digite seu texto..."
+                oninput='if(this.scrollHeight > this.offsetHeight) this.rows += 1'" maxlength=" 10000"></textarea>
+        </section>
+
+
 
 
     </main>
