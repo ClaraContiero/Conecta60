@@ -13,7 +13,10 @@ app = Flask(__name__)
 
 
 #adicionando o banco de dados com o sql lite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+
+#adicionando o NOVO banco de dados com o mysql
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:senha987@localhost/users'
 
 #chave secreta
 app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
@@ -26,7 +29,7 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(200), nullable = False)
     email = db.Column(db.String(120), nullable = False, unique = True)
-    date_added = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    #date_added = db.Column(db.DateTime, default=lambda: datetime.utcnow)
 
     #criando uma string
     def __repr__(self):
@@ -38,17 +41,14 @@ class NameForm(FlaskForm):
     submit = SubmitField('Enviar')
 
 
+#formulario para cadastrarmos nome e email
 class UserForm(FlaskForm):
     name = StringField("Nome", validators=[DataRequired()]) #mostra se você preencheu o formulário
     email = StringField("Email", validators=[DataRequired()]) #mostra se você preencheu o formulário
     submit = SubmitField('Enviar')
 
 
-
-
-
 #rotas das página do site
-
 @app.route("/")
 def name():
     name = None
@@ -79,13 +79,11 @@ def user():
         form.email.data = ''
         flash('Usuário adicionado com sucesso')
 
-    our_users = Users.query.order_by(Users.date_added)
+    our_users = Users.query.order_by(Users.id)
     return render_template('add_user.html',
         form = form, 
         name = name,
         our_users = our_users )
-
-
 
 with app.app_context():
     db.create_all()
