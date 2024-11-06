@@ -102,3 +102,18 @@ p a:hover {
     align-items: center;
 }
 
+.but_submit{
+    background-color: #569B51;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: white;
+    transition: 0.5s;
+
+}
+
+.but_submit:hover {
+    background-color: #2D2D2D;
+    color: white;
+    cursor: pointer;
+}
