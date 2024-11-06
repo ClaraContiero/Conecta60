@@ -1,5 +1,6 @@
 # source novo_virtual/Scripts/activate
 # deactivate
+# pip install -r requirements.txt -> para baixar os arquivos de import de uma vez
 
 from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
@@ -7,25 +8,46 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from extensions import db
 
-#roda o site
-app = Flask(__name__)
+# #roda o site
+# app = Flask(__name__)
 
 
-#adicionando o banco de dados com o sql lite
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+# #adicionando o banco de dados com o sql lite
+# #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 
-#adicionando o NOVO banco de dados com o mysql
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:senha987@localhost/our_users'
+# #adicionando o NOVO banco de dados com o mysql
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136'
 
-#chave secreta
-app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
+# #chave secreta
+# app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
 
-#iniciando o banco de dados
-db = SQLAlchemy(app)
+# #iniciando o banco de dados
+# db = SQLAlchemy(app)
+
+def create_app():
+    app = Flask(__name__)
+    
+    # Configuração da chave secreta e do banco de dados
+    app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    
+    # Inicializar o SQLAlchemy com o app
+    db.init_app(app)
+
+    # hh
+    with app.app_context():
+        db.create_all()
+    
+    return app
+
+app = create_app()
+
 
 #criando um modelo
-class Users(db.Model):
+class Users(db.Model): 
+    __tablename__ = 'Users'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(200), nullable = False)
     email = db.Column(db.String(120), nullable = False, unique = True)
@@ -87,9 +109,6 @@ def user():
         form = form, 
         name = name,
         our_users = our_users )
-
-with app.app_context():
-    db.create_all()
 
 if __name__ == "__main__":
     app.run(debug = True)
