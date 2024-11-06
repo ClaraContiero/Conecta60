@@ -16,7 +16,7 @@ app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 
 #adicionando o NOVO banco de dados com o mysql
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:senha987@localhost/users'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:senha987@localhost/our_users'
 
 #chave secreta
 app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
@@ -48,11 +48,9 @@ class UserForm(FlaskForm):
     submit = SubmitField('Enviar')
 
 
-<<<<<<< HEAD
-=======
+
 #para puxar imagens: https://wtforms.readthedocs.io/en/2.3.x/fields/
 
->>>>>>> 1f55739992f2e3382342212ba8b984320ddb9e99
 #rotas das página do site
 @app.route("/")
 def name():
