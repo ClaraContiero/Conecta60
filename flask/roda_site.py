@@ -10,19 +10,19 @@ app = Flask(__name__)
 #### CHAVE SECRETA
 app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
 
-#### ROTAS PARA AS PÁGINAS
+############################################## ROTAS PARA AS PÁGINAS
 
-# Página Inicial
+# Página Inicial ##############################################
 @app.route("/")
 def inicial():
     return render_template('inicio.html')
 
-# Página escolha de prof/aluno
+# Página escolha de prof/aluno ##############################################
 @app.route("/cadProfAluno")
 def cadProfAluno():
     return render_template('cadastroProfAlun.html')
 
-# Página de cadastro
+# Página de cadastro ##############################################
 class cadastro(FlaskForm):
     dataNasc = DateField('Data de Nascimento *', validators=[DataRequired()])
     nomeCompleto = StringField('Nome Completo *', validators=[DataRequired()])
@@ -44,24 +44,26 @@ def cadastrar():
         form = form)
 
 
-
-
-# Página de login
+# Página de login ##############################################
 @app.route("/login")
 def login():
     return render_template('login.html')
 
-# Página de módulos
+# Página de módulos ##############################################
 @app.route("/modulos")
 def modulos():
     return render_template('modulos.html')
 
-# Página de conteúdos
+# Página de conteúdos ##############################################
 @app.route("/conteudos")
 def conteudos():
     return render_template('conteudos.html')
 
+# Página de digitação ##############################################
+@app.route("/teste-digitacao")
+def digita():
+    return render_template('digitacao.html')
 
-#### FINALIZA A APLICAÇÃO
+############################################## FINALIZA A APLICAÇÃO
 if __name__ == "__main__":
     app.run(debug = True)

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/digitacao/digitacao.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    {%include 'header.html'%}
+
+    {%block content%}
+
+    <main>
+        <section id="atv-digit">
+            <h1 id="titulo_ativ">Atividade 1: digite corretamente</h1>
+            <!-- <h2 id="letras">fffffffffff jjjjjjjjjjj ffffffffff jjjjjjj fjfjffjfjfjfjfjfj</h2> lembrando que esse texto vai ser definido em um array sla, que o prof pode editar -->
+            <section id="teclado">
+                <div class="container">
+                    <div class="row zero">
+                        <button class="but-digit">Esc</button>
+                        <button class="but-digit">F1</button>
+                        <button class="but-digit">F2</button>
+                        <button class="but-digit">F3</button>
+                        <button class="but-digit">F4</button>
+                        <button class="but-digit">F5</button>
+                        <button class="but-digit">F6</button>
+                        <button class="but-digit">F7</button>
+                        <button class="but-digit">F8</button>
+                        <button class="but-digit">F9</button>
+                        <button class="but-digit">F10</button>
+                        <button class="but-digit">F11</button>
+                        <button class="but-digit">F12</button>
+                        <button class="but-digit">Insect</button>
+                        <button class="but-digit print">printScr</button>
+                        <button class="but-digit">Delete</button>
+                    </div>
+
+
+                    <div class="row one">
+                        <button class="but-digit">~</button> 
+                        <button class="but-digit">1</button>
+                        <button class="but-digit">2</button>
+                        <button class="but-digit">3</button>
+                        <button class="but-digit">4</button>
+                        <button class="but-digit">5</button>
+                        <button class="but-digit">6</button>
+                        <button class="but-digit">7</button>
+                        <button class="but-digit">8</button>
+                        <button class="but-digit">9</button>
+                        <button class="but-digit">10</button>
+                        <button class="but-digit">-</button>
+                        <button class="but-digit">=</button>
+                        <button class="but-digit back">Backspace</button>
+                        <button class="but-digit">Home</button>
+                    </div>
+
+
+                    <div class="row two">
+                        <button class="but-digit tab">Tab</button>
+                        <button class="but-digit">Q</button>
+                        <button class="but-digit">W</button>
+                        <button class="but-digit">E</button>
+                        <button class="but-digit">R</button>
+                        <button class="but-digit">T</button>
+                        <button class="but-digit">Y</button>
+                        <button class="but-digit">U</button>
+                        <button class="but-digit">I</button>
+                        <button class="but-digit">O</button>
+                        <button class="but-digit">P</button>
+                        <button class="but-digit">{</button>
+                        <button class="but-digit">}</button>
+                        <button class="but-digit slace">\</button>
+                        <button class="but-digit">Pg Up</button>
+                    </div>
+
+
+                    <div class="row three">
+                        <button class="but-digit cap">Caps Lock</button>
+                        <button class="but-digit">A</button>
+                        <button class="but-digit">S</button>
+                        <button class="but-digit">D</button>
+                        <button class="but-digit">F</button>
+                        <button class="but-digit">G</button>
+                        <button class="but-digit">H</button>
+                        <button class="but-digit">I</button>
+                        <button class="but-digit">J</button>
+                        <button class="but-digit">K</button>
+                        <button class="but-digit">L</button>
+                        <button class="but-digit">;</button>
+                        <button class="but-digit">"</button>
+                        <button class="but-digit enter-btn">Enter</button>
+                        <button class="but-digit">Pg Dn</button>
+                    </div>
+
+                    <div class="row four">
+                        <button class="but-digit shift">Shift</button>
+                        <button class="but-digit" >Z</button>
+                        <button class="but-digit" >X</button>
+                        <button class="but-digit" >C</button>
+                        <button class="but-digit" >V</button>
+                        <button class="but-digit" >B</button>
+                        <button class="but-digit" >N</button>
+                        <button class="but-digit" >M</button>
+                        <button class="but-digit" > > </button>
+                        <button class="but-digit" >></button>
+                        <button class="but-digit" >?</button>
+                        <button class="but-digit shift">Shift</button>
+                        <button class="but-digit" >↑</button>
+                        <button class="but-digit" >End</button>
+                    </div>
+
+                    <div class="row five">
+                        <button class="but-digit last">Ctrl</button>
+                        <button class="but-digit last">Fn</button>
+                        <button class="but-digit last">Win</button>
+                        <button class="but-digit last">Alt</button>
+                        <button class="but-digit space">Space</button>
+                        <button class="but-digit last">Alt</button>
+                        <button class="but-digit last">Fn</button>
+                        <button class="but-digit last">Ctrl</button>
+                        <button class="but-digit last">←</button>
+                        <button class="but-digit last">↓</button>
+                        <button class="but-digit last">→</button>
+                    </div>
+                </div>
+
+            </section>
+            <button id="avante">Avançar</button>
+
+        </section>
+
+    </main>
+
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+
+
+</body>
+
+</html>
