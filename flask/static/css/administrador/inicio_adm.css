@@ -1,0 +1,17 @@
+#saudar {
+    margin-bottom: 8%;
+    color: #569B51;
+    font-size: 3rem;
+    text-align: center;
+}
+
+table{
+    max-width: 50rem;
+    width: 100%;
+}
+
+#turmas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -4,13 +4,13 @@ from wtforms import StringField, SubmitField, DateField, EmailField, PasswordFie
 from wtforms.validators import DataRequired 
 
 
-#### COMANDO PARA RODAR O SITE
+############################################## COMANDO PARA RODAR O SITE ##############################################
 app = Flask(__name__)
 
 #### CHAVE SECRETA
 app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
 
-############################################## ROTAS PARA AS PÁGINAS
+############################################## ROTAS PARA AS PÁGINAS ##############################################
 
 # Página Inicial ##############################################
 @app.route("/")
@@ -45,9 +45,24 @@ def cadastrar():
 
 
 # Página de login ##############################################
-@app.route("/login")
+class logar(FlaskForm):
+    email = EmailField('Email *', validators=[DataRequired()])
+    senha = PasswordField('Senha *',validators=[DataRequired()])
+    enviar = SubmitField('ENTRAR')
+
+
+@app.route("/Entrar")
 def login():
-    return render_template('login.html')
+    name = None
+    form = logar()
+    #validando o formulario
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data = ''
+        flash('Login realizado com sucesso!')
+    return render_template('login.html',
+        name = name,
+        form = form)
 
 # Página de módulos ##############################################
 @app.route("/modulos")
@@ -64,6 +79,13 @@ def conteudos():
 def digita():
     return render_template('digitacao.html')
 
-############################################## FINALIZA A APLICAÇÃO
+
+# Página inicial do adm ##############################################
+@app.route("/adm")
+def administrador():
+    return render_template('inicio_professor.html')
+############################################## FINALIZA A APLICAÇÃO ##############################################
+
+
 if __name__ == "__main__":
     app.run(debug = True)

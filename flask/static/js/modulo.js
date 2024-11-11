@@ -14,6 +14,7 @@ modulos.forEach(modulo => {
         if (conteudo.style.display === "none") {
             toggle.style.transform = "rotate(90deg)";
             conteudo.style.display = "flex";
+        
         } else {
             toggle.style.transform = "rotate(0deg)";
             conteudo.style.display = "none";
