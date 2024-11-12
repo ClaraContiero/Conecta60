@@ -7,12 +7,11 @@
     align-items: center;
     padding: 3rem;
     gap: 1rem;
-
+    border-radius: 0.5rem;
 }
 
-textarea {
+.textarea {
     width: 90%;
-    background-color: white;
     border: none;
     padding: 1rem;
     resize: none;
@@ -21,17 +20,23 @@ textarea {
     /* line-height: 2.5rem; */
     overflow: hidden;
     color: #2D2D2D;
-    
 }
 
-#titulo {
+.textarea:hover{
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+
+
+}
+
+.titulo {
     font-size: 4rem;
     font-weight: 500;
     height: 5rem;
 
 }
 
-#subtitulo {
+.subtitulo {
     font-size: 2rem;
     font-weight: 500;
     height: 5rem;
@@ -44,4 +49,61 @@ textarea {
 
 }
 
+.but {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    padding: 2%;
+    background-color: #ffffff;
+    box-shadow: 6px 8px rgba(0,0,0,0.1);
+}
 
+/* Menu de elementos */
+.menu{
+    background-color: white;
+    box-shadow: 6px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;/*arredondar os cantos de um elemento HTML, como uma imagem ou uma div*/
+    padding: 20px; /*É o preenchimento do elemento, ou seja, o espaçamento interno do elemento */
+    max-width: 25rem;/*definir a largura máxima que um elemento pode ter*/
+    width: 100%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: relative;
+    z-index: 1;
+}
+.menu-item{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:last-child{
+    border-bottom: none;
+}
+
+.menu-item:hover{
+    background-color: #f0f0f0;
+}
+
+.icon{
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 16px;
+    text-align: start;
+}
+
+.description{
+    font-size: 14px;
+    color: #666666;
+    margin-left: auto;
+}
