@@ -18,16 +18,14 @@
     <main>
         <section id="cadastro">
             <h1>ENTRAR</h1>
-            <form action="" method="get">
-                <label>
-                    Email *
-                    <input type="email" name="email" required>
-                </label>
-                <label>
-                    Senha *
-                    <input type="password" name="senha" required>
-                </label>
-                <a href="login"><button>ENTRAR</button></a>
+            <form method="POST">
+                {{ form.email.label(class = 'label')}}
+                {{ form.email(class = 'input') }}
+
+                {{ form.senha.label(class = 'label')}}
+                {{ form.senha(class = 'input') }}
+
+                {{ form.enviar(class = 'but_submit')}}
                 <p>Não possui uma conta? <a href="cadProfAluno">Crie uma conta</a></p>
             </form>
         </section>

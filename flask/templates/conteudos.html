@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/conteudos/conteudos.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <script src="{{url_for('static', filename='js/textarea.js')}}" defer></script>
     <title>Document</title>
 
 </head>
@@ -17,14 +18,51 @@
     {%block content%}
 
     <main>
+
+        <!-- <div class="menu">
+            <div class="menu-item">
+            <span class="icon">Aa |</span>
+            <span class="title">Título</span>
+            <span class="description">Adicione um título à página.</span>
+          </div>
+          <div class="menu-item">
+            <span class="icon">S1 |</span>
+            <span class="title">Subtítulo 1</span>
+            <span class="description">Cabeçalho de seção grande</span>
+          </div>
+          <div class="menu-item">
+            <span class="icon">S2 |</span>
+            <span class="title">Subtítulo 2</span>
+            <span class="description">Cabeçalho de seção média</span>
+          </div>
+          <div class="menu-item">
+            <span class="icon">Parágrafo|</span>
+            <span class="title">Parágrafo</span>
+            <span class="description">Parágrafo</span>
+          </div>
+          <div class="menu-item">
+            <span class="icon">🖼️ |</span>
+            <span class="title">Imagem</span>
+            <span class="description">Adicione uma imagem</span>
+          </div>
+          <div class="menu-item">
+            <span class="icon">🖇️ |</span>
+            <span class="title">Arquivo</span>
+            <span class="description">Fazer upload de arquivo</span>
+          </div>
+        </div> -->
+
         <section id="conteudo">
             <!-- lembrando que esses detalhes serão mutáveis -->
-            <textarea id="titulo" placeholder="Digite um título..." maxlength="50"></textarea>
-            <textarea id="subtitulo" placeholder="Digite um subtítulo..." maxlength="100"></textarea>
+             {{form.h1(class = 'titulo textarea', oninput="autoResize(this)" )}}
+
+             {{form.h2(class = 'subtitulo textarea')}}
+
+             {{form.paragrafo(class = 'textos textarea')}}
+
+             {{form.imagem(class = 'but')}}
 
 
-            <textarea name="" class="textos" placeholder="Digite seu texto..."
-                oninput='if(this.scrollHeight > this.offsetHeight) this.rows += 1'" maxlength=" 10000"></textarea>
         </section>
 
 

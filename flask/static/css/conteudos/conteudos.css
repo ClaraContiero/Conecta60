@@ -3,34 +3,105 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 3rem;
+    gap: 1rem;
+    border-radius: 0.5rem;
+}
+
+.textarea {
+    width: 90%;
+    border: none;
+    padding: 1rem;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: start;
+    /* line-height: 2.5rem; */
+    overflow: hidden;
+    color: #2D2D2D;
+}
+
+.textarea:hover{
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+
+
+}
+
+.titulo {
+    font-size: 4rem;
+    font-weight: 500;
+    height: 5rem;
+
+}
+
+.subtitulo {
+    font-size: 2rem;
+    font-weight: 500;
+    height: 5rem;
+
+}
+
+.textos {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+
+}
+
+.but {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    padding: 2%;
+    background-color: #ffffff;
+    box-shadow: 6px 8px rgba(0,0,0,0.1);
+}
+
+/* Menu de elementos */
+.menu{
+    background-color: white;
+    box-shadow: 6px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;/*arredondar os cantos de um elemento HTML, como uma imagem ou uma div*/
+    padding: 20px; /*É o preenchimento do elemento, ou seja, o espaçamento interno do elemento */
+    max-width: 25rem;/*definir a largura máxima que um elemento pode ter*/
+    width: 100%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: relative;
+    z-index: 1;
+}
+.menu-item{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:last-child{
+    border-bottom: none;
+}
+
+.menu-item:hover{
     background-color: #f0f0f0;
-    margin: 0;
 }
 
-.menu-container{
-    text-align: center;
+.icon{
+    font-size: 1.2rem;
+    margin-right: 15px;
 }
 
-label{
+.title{
     font-weight: bold;
     font-size: 16px;
-}
-
-.menu{
-    width: 250px;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    font-size: 16px;
-    cursor: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: start;
 }
 
 .description{
-    margin-top: 10px;
     font-size: 14px;
-    color: #747474;
+    color: #666666;
+    margin-left: auto;
 }
