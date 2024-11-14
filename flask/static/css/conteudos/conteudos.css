@@ -1,48 +1,36 @@
-#conteudo {
+body {
+    font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column;
-    background-color: white;
-    max-width: 100%;
-    height:auto;
+    justify-content: center;
     align-items: center;
-    padding: 3rem;
-    gap: 1rem;
-
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
 }
 
-textarea {
-    width: 90%;
-    background-color: white;
-    border: none;
-    padding: 1rem;
-    resize: none;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: start;
-    /* line-height: 2.5rem; */
-    overflow: hidden;
-    color: #2D2D2D;
-    background-color: blue;
-    
+.menu-container{
+    text-align: center;
 }
 
-#titulo {
-    font-size: 4rem;
-    font-weight: 500;
-    height: 5rem;
-
+label{
+    font-weight: bold;
+    font-size: 16px;
 }
 
-#subtitulo {
-    font-size: 2rem;
-    font-weight: 500;
-    height: 5rem;
-
+.menu{
+    width: 250px;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 16px;
+    cursor: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.textos {
-    font-size: 1.5rem;
-    line-height: 2.5rem;
-
+.description{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #747474;
 }
-
-
