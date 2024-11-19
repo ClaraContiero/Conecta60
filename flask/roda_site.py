@@ -13,12 +13,12 @@ def create_app():
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    # app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
     
     # Inicializar o SQLAlchemy com o app
     db.init_app(app)
 
-    # hh
     with app.app_context():
         db.create_all()
     
@@ -31,12 +31,19 @@ app = create_app()
 # Página Inicial ##############################################
 @app.route("/")
 def inicial():
-    return render_template('inicio.html')
+    return render_template('geral/inicio.html')
 
 # Página escolha de prof/aluno ##############################################
-@app.route("/cadProfAluno")
+@app.route("/Cadastro_Categoria")
 def cadProfAluno():
-    return render_template('cadastroProfAlun.html')
+    return render_template('geral/cadastroProfAlun.html')
+
+
+# Página login de prof/aluno ##############################################
+@app.route("/Login_Categoria")
+def loginProfAluno():
+    return render_template('geral/loginProfAlun.html')
+
 
 # Página de cadastro ##############################################
 
@@ -61,7 +68,6 @@ def cadastrar():
     name = None
     #validando o formulario
     if form.validate_on_submit():
-        print("Oi")
         usuario = tabela_cadastro.query.filter_by(email=form.email.data).first()
         if usuario is None:
             try:
@@ -90,7 +96,7 @@ def cadastrar():
                 flash(f'Erro ao registrar o usuário: {e}')
         else:
                 flash('Email já existente.')
-    return render_template('cadastro.html', form = form, name = name)
+    return render_template('geral/cadastro.html', form = form, name = name)
 
 
 # Página de login ##############################################
@@ -109,14 +115,14 @@ def login():
         name = form.name.data
         form.name.data = ''
         flash('Login realizado com sucesso!')
-    return render_template('login.html',
+    return render_template('geral/login.html',
         name = name,
         form = form)
 
 # Página de módulos ##############################################
-@app.route("/modulos")
+@app.route("/Modulos")
 def modulos():
-    return render_template('modulos.html')
+    return render_template('aluno/modulos.html')
 
 # Página de conteúdos ##############################################
 class elementos(FlaskForm):
@@ -126,24 +132,24 @@ class elementos(FlaskForm):
     imagem = FileField(u'Imagem', [regexp(r'^[a-zA-Z0-9_-]+\.jpg$', message="Apenas arquivos .jpg são permitidos.")])
 
 
-@app.route("/conteudos")
+@app.route("/Conteudo")
 def conteudos():
     name = None
     form = elementos()
-    return render_template('conteudos.html',
+    return render_template('aluno/conteudos.html',
         name = name,
         form = form)
 
 # Página de digitação ##############################################
-@app.route("/teste-digitacao")
+@app.route("/Digitacao")
 def digita():
-    return render_template('digitacao.html')
+    return render_template('aluno/digitacao.html')
 
 
 # Página inicial do adm ##############################################
-@app.route("/adm")
+@app.route("/Administrador")
 def administrador():
-    return render_template('inicio_professor.html')
+    return render_template('adm/inicio_professor.html')
 ############################################## FINALIZA A APLICAÇÃO ##############################################
 
 

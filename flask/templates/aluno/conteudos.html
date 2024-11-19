@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/conteudos/conteudos.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <script src="{{url_for('static', filename='js/textarea.js')}}" defer></script>
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    {%include 'header.html'%}
+
+    {%block content%}
+
+    <main>
+      
+        <section id="conteudo">
+            <!-- lembrando que esses detalhes serão mutáveis -->
+             {{form.h1(class = 'titulo textarea', oninput="autoResize(this)" )}}
+
+             {{form.h2(class = 'subtitulo textarea')}}
+
+             {{form.paragrafo(class = 'textos textarea')}}
+
+             {{form.imagem(class = 'but')}}
+
+
+        </section>
+
+
+
+
+    </main>
+
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+
+
+</body>
+
+</html>
