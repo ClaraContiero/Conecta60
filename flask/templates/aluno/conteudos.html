@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/conteudos/conteudos.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
-    <script src="{{url_for('static', filename='js/textarea.js')}}" defer></script>
+    <!-- <script src="{{url_for('static', filename='js/textarea.js')}}" defer></script> -->
+    <script src="{{url_for('static', filename='js/menu.js')}}" defer></script>
+
     <title>Document</title>
 
 </head>
@@ -21,13 +23,52 @@
       
         <section id="conteudo">
             <!-- lembrando que esses detalhes serão mutáveis -->
-             {{form.h1(class = 'titulo textarea', oninput="autoResize(this)" )}}
+             <!-- {{form.h1(class = 'titulo textarea', oninput="autoResize(this)" )}}
 
              {{form.h2(class = 'subtitulo textarea')}}
 
              {{form.paragrafo(class = 'textos textarea')}}
 
-             {{form.imagem(class = 'but')}}
+             {{form.imagem(class = 'but')}} -->
+
+             
+             <div class="menu-container">
+                <label for="menu">Escolha uma opção:</label>
+                <select id="menu" class="menu">
+                  <option value="titulo">📝 | Título</option>
+                  <option value="s1">🔹 | Subtítulo 1</option>
+                  <option value="s2">🔸 | Subtítulo 2</option>
+                  <option value="txt">✏️ | Texto</option>
+                  <option value="img">🖼️ | Imagem</option>
+                  <option value="arquivo">🖇️ | Arquivos</option>
+                </select>
+              </div>
+              
+              <div id="imgInput" class="input-field" style="display: none;">
+                <label for="imgFile">Carregar Imagem:</label>
+                <input type="file" id="imgFile" accept="image/*">
+                <button onclick="addImageToContent()">Adicionar Imagem</button>
+              </div>
+              
+              <div id="arquivoInput" class="input-field" style="display: none;">
+                <label for="arquivoFile">Carregar Arquivo:</label>
+                <input type="file" id="arquivoFile" accept=".pdf,.doc,.docx,.txt">
+                <button onclick="addFileToContent()">Adicionar Arquivo</button>
+              </div>
+              
+              <div class="content-area" id="contentArea">
+                <h3>Conteúdo Adicionado</h3>
+                <div id="contentDisplay" contenteditable="true" class="editable-content"></div>
+              </div>
+              
+              <div class="save-container">
+                <button id="saveButton" onclick="saveContent()">Salvar</button>
+              </div>
+              
+
+
+
+
 
 
         </section>

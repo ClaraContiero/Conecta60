@@ -13,8 +13,8 @@ def create_app():
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
-    # app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
     
     # Inicializar o SQLAlchemy com o app
     db.init_app(app)
