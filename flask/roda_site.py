@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired, regexp
 from wtforms import validators
 from werkzeug.security import generate_password_hash
 from extensions import db
+from wtforms.widgets import TextArea
 
 
 ############################################## COMANDO PARA RODAR O SITE ##############################################
@@ -13,8 +14,10 @@ def create_app():
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+
     
     # Inicializar o SQLAlchemy com o app
     db.init_app(app)
@@ -125,20 +128,57 @@ def modulos():
     return render_template('aluno/modulos.html')
 
 # Página de conteúdos ##############################################
-class elementos(FlaskForm):
-    h1 = TextAreaField(u'Digite um título...', [validators.optional(), validators.length(max=200)], render_kw={"placeholder": "Digite o título aqui..."})
-    h2 = TextAreaField(u'Digite um subtítulo...', [validators.optional(), validators.length(max=250)], render_kw={"placeholder": "Digite o subtítulo aqui..."})
-    paragrafo = TextAreaField(u'Digite um texto...', [validators.optional(), validators.length(max=1000)], render_kw={"placeholder": "Digite o texto aqui..."})
-    imagem = FileField(u'Imagem', [regexp(r'^[a-zA-Z0-9_-]+\.jpg$', message="Apenas arquivos .jpg são permitidos.")])
+# criando um modelo de blog
+class tabela_conteudos(db.Model):
+    __tablename__ = 'conteudo'
+    id_conteudo = db.Column(db.Integer, primary_key = True)
+    titulo = db.Column(db.String(255))
+    subtitulo = db.Column(db.String(255))
+    texto = db.Column(db.Text)
+    slug = db.Column(db.String(255))
+    # ver vídeo do migration
 
+class postConteudo(FlaskForm):
+    titulo = StringField('Título', validators=[DataRequired()])
+    subtitulo = StringField('Subtítulo', validators=[DataRequired()])
+    texto = StringField('Texto', validators=[DataRequired()], widget=TextArea())
+    slug = StringField('Slug', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
-@app.route("/Conteudo")
+@app.route("/AddConteudo", methods=['GET', 'POST'])
 def conteudos():
-    name = None
-    form = elementos()
-    return render_template('aluno/conteudos.html',
-        name = name,
-        form = form)
+    form = postConteudo()
+
+    if form.validate_on_submit():
+        # Criar uma nova instância de conteúdo com os dados do formulário
+        post = tabela_conteudos(
+            titulo=form.titulo.data, 
+            subtitulo=form.subtitulo.data,
+            texto=form.texto.data, 
+            slug=form.slug.data)
+        
+        # Adicionar o novo conteúdo ao banco de dados
+        db.session.add(post)
+        db.session.commit()
+
+        # Limpar os campos do formulário após o envio
+        form.titulo.data = ''
+        form.subtitulo.data = ''
+        form.texto.data = ''
+        form.slug.data = ''
+
+        # Adicionar uma mensagem de sucesso
+        flash('Conteúdo postado com sucesso!')
+
+        # Redirecionar ou renderizar novamente o template com os dados
+        return redirect(url_for('conteudo'))
+
+    # Recuperar todos os conteúdos do banco de dados
+    all_conteudos = tabela_conteudos.query.all()
+
+    # Renderizar o template, passando o formulário e os conteúdos
+    return render_template('aluno/conteudos.html', form=form, conteudos=all_conteudos)
+
 
 # Página de digitação ##############################################
 @app.route("/Digitacao")
