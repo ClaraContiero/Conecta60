@@ -16,7 +16,8 @@ def create_app():
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
     #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
     # Inicializar o SQLAlchemy com o app
@@ -171,13 +172,22 @@ def conteudos():
         flash('Conteúdo postado com sucesso!')
 
         # Redirecionar ou renderizar novamente o template com os dados
-        return redirect(url_for('conteudo'))
+        return redirect(url_for('conteudoAluno'))
 
     # Recuperar todos os conteúdos do banco de dados
-    all_conteudos = tabela_conteudos.query.all()
+    
 
     # Renderizar o template, passando o formulário e os conteúdos
-    return render_template('aluno/conteudos.html', form=form, conteudos=all_conteudos)
+    return render_template('adm/conteudos.html', form=form)
+
+
+@app.route("/ConteudoAluno")
+def conteudoAluno():
+    # Renderizar o template, passando o formulário e os conteúdos
+    all_conteudos = tabela_conteudos.query.all()
+    return render_template('aluno/conteudo_alunos.html', conteudos=all_conteudos)
+
+
 
 
 # Página de digitação ##############################################

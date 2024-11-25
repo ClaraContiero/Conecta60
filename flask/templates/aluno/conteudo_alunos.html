@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/digitacao/digitacao.css')}}">
+    <script src="{{url_for('static', filename='js/digitacao.js')}}" defer></script>
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    {%include 'header_sair.html'%}
+
+    {%block content%}
+
+    <main>
+       {% for conteudo in conteudos %}
+    <div>
+        <h3>{{ conteudo.titulo }}</h3>
+        <h4>{{ conteudo.subtitulo }}</h4>
+        <p>{{ conteudo.texto }}</p>
+    </div>
+        {% endfor %}
+
+    </main>
+
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+
+
+</body>
+
+</html>
