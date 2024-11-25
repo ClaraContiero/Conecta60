@@ -21,36 +21,38 @@
     {%include 'header.html'%}
 
     {%block content%}
-    
+
     <main>
 
         <section id="cadastro">
 
             {% if name %}
-                {{name}}
+            {{name}}
             {% endif%}
 
             <h1>CADASTRO</h1>
 
             <form method="POST">
 
-                {{ form.hidden_tag() }}
+                
+                    {{ form.hidden_tag() }}
 
-                {{ form.data_nasc.label(class = 'label')}}
-                {{ form.data_nasc(class = 'input') }}
+                    {{ form.data_nasc.label(class = 'label')}}
+                    {{ form.data_nasc(class = 'input') }}
 
-                {{ form.nome_completo.label(class = 'label')}}
-                {{ form.nome_completo(class = 'input') }}
+                    {{ form.nome_completo.label(class = 'label')}}
+                    {{ form.nome_completo(class = 'input') }}
 
-                {{ form.email.label(class = 'label')}}
-                {{ form.email(class = 'input') }}
+                    {{ form.email.label(class = 'label')}}
+                    {{ form.email(class = 'input') }}
 
-                {{ form.senha.label(class = 'label')}}
-                {{ form.senha(class = 'input') }}
+                    {{ form.senha.label(class = 'label')}}
+                    {{ form.senha(class = 'input') }}
 
-                {{ form.enviar(class = 'but_submit')}}
+                    {{ form.enviar(class = 'but_submit')}}
 
-                <p>Já tem uma conta? <a href="Login_Categoria">Entre na sua conta</a></p>
+                    <p>Já tem uma conta? <a href="Login_Categoria">Entre na sua conta</a></p>
+
 
             </form>
 

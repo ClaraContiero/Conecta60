@@ -20,33 +20,33 @@
   {%block content%}
 
   <main>
-    <h1>POST</h1>
-
     <form method="POST">
-      {{ form.hidden_tag() }}
+      <h1>Adicione um conteúdo</h1>
 
+      <div class="menu-container">
+        <label for="menu">Escolha uma turma:</label>
+        <select id="menu" class="menu">
+          <option value="turma"> Turma | {id} </option>
+          <option value="turma"> Turma | {id} </option>
+          <option value="turma"> Turma | {id} </option>
+          <option value="turma"> Turma | {id} </option>
+
+        </select>
+      </div>
+
+      {{form.hidden_tag() }}
+
+      {{form.titulo.label(class = 'label' )}}
       {{form.titulo(class = 'titulo textarea', oninput="autoResize(this)" )}}
 
+      {{form.subtitulo.label(class = 'label' )}}
       {{form.subtitulo(class = 'subtitulo textarea')}}
 
+      {{form.texto.label(class = 'label' )}}
       {{form.texto(class = 'textos textarea')}}
 
-      {{form.slug(class = 'textos textarea')}}
-
-      {{ form.submit(class = 'but_submit')}}
-
+      {{form.submit(class = 'button')}}
     </form>
-
-
-    <!-- {% for conteudo in conteudos %}
-    <div>
-        <h3>{{ conteudo.titulo }}</h3>
-        <h4>{{ conteudo.subtitulo }}</h4>
-        <p>{{ conteudo.texto }}</p>
-    </div>
-{% endfor %} -->
-
-
 
   </main>
 

@@ -17,20 +17,21 @@
     {%block content%}
 
     <main>
-       {% for conteudo in conteudos %}
-    <div>
-        <h3>{{ conteudo.titulo }}</h3>
-        <h4>{{ conteudo.subtitulo }}</h4>
-        <p>{{ conteudo.texto }}</p>
-    </div>
-        {% endfor %}
+    
+        
 
     </main>
+
+
+    <!-- PARA GERAR UM PDF DO CONTEÚDO https://pythonhosted.org/Flask-WeasyPrint/ -->
 
 
     {%endblock%}
 
     {%include 'footer.html'%}
+
+
+
 
 
 </body>

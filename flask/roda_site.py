@@ -8,16 +8,16 @@ from extensions import db
 from wtforms.widgets import TextArea
 
 
-############################################## COMANDO PARA RODAR O SITE ##############################################
+# COMANDO PARA RODAR O SITE ----------------------------------------------------------------------------------------------------
 def create_app():
     app = Flask(__name__)
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
     #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
     # Inicializar o SQLAlchemy com o app
@@ -30,27 +30,26 @@ def create_app():
 
 app = create_app()
 
-############################################## ROTAS PARA AS PÁGINAS ##############################################
+# ROTAS PARA AS PÁGINAS ----------------------------------------------------------------------------------------------------
 
-# Página Inicial ##############################################
+# Página Inicial ----------------------------------------------------------------------------------------------------
 @app.route("/")
 def inicial():
     return render_template('geral/inicio.html')
 
-# Página escolha de prof/aluno ##############################################
+# Página escolha de prof/aluno ----------------------------------------------------------------------------------------------------
 @app.route("/Cadastro_Categoria")
 def cadProfAluno():
     return render_template('geral/cadastroProfAlun.html')
 
 
-# Página login de prof/aluno ##############################################
+# Página login de prof/aluno ----------------------------------------------------------------------------------------------------
 @app.route("/Login_Categoria")
 def loginProfAluno():
     return render_template('geral/loginProfAlun.html')
 
 
-# Página de cadastro ##############################################
-
+# Página de cadastro ----------------------------------------------------------------------------------------------------
 class tabela_cadastro(db.Model): 
     __tablename__ = 'cadastro'
     id_cadastro = db.Column(db.Integer, primary_key = True)
@@ -75,9 +74,7 @@ def cadastrar():
         usuario = tabela_cadastro.query.filter_by(email=form.email.data).first()
         if usuario is None:
             try:
-
                 senha_hash = generate_password_hash(form.senha.data)
-
                 usuario = tabela_cadastro(
                     data_nasc = form.data_nasc.data,
                     nome_completo = form.nome_completo.data,
@@ -103,12 +100,11 @@ def cadastrar():
     return render_template('geral/cadastro.html', form = form, name = name)
 
 
-# Página de login ##############################################
+# Página de login ----------------------------------------------------------------------------------------------------
 class logar(FlaskForm):
     email = EmailField('Email *', validators=[DataRequired()])
     senha = PasswordField('Senha *',validators=[DataRequired()])
     enviar = SubmitField('ENTRAR')
-
 
 @app.route("/Entrar")
 def login():
@@ -123,13 +119,12 @@ def login():
         name = name,
         form = form)
 
-# Página de módulos ##############################################
+# Página de módulos ----------------------------------------------------------------------------------------------------
 @app.route("/Modulos")
 def modulos():
     return render_template('aluno/modulos.html')
 
-# Página de conteúdos ##############################################
-# criando um modelo de blog
+# Página de conteúdos ----------------------------------------------------------------------------------------------------
 class tabela_conteudos(db.Model):
     __tablename__ = 'conteudo'
     id_conteudo = db.Column(db.Integer, primary_key = True)
@@ -140,18 +135,18 @@ class tabela_conteudos(db.Model):
     # ver vídeo do migration
 
 class postConteudo(FlaskForm):
-    titulo = StringField('Título', validators=[DataRequired()])
-    subtitulo = StringField('Subtítulo', validators=[DataRequired()])
-    texto = StringField('Texto', validators=[DataRequired()], widget=TextArea())
-    slug = StringField('Slug', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    titulo = StringField('Título:', validators=[DataRequired()], render_kw={"placeholder": "Digite o título aqui..."})
+    subtitulo = StringField('Subtítulo:', validators=[DataRequired()], render_kw={"placeholder": "Digite o subtítulo aqui..."})
+    texto = StringField('Texto:', validators=[DataRequired()], widget=TextArea(), render_kw={"placeholder": "Digite o texto aqui..."})
+    slug = StringField('Slug', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
+    submit = SubmitField('Salvar e Publicar')
 
 @app.route("/AddConteudo", methods=['GET', 'POST'])
 def conteudos():
     form = postConteudo()
 
     if form.validate_on_submit():
-        # Criar uma nova instância de conteúdo com os dados do formulário
+        # Cria uma nova instância de conteúdo com os dados do formulário
         post = tabela_conteudos(
             titulo=form.titulo.data, 
             subtitulo=form.subtitulo.data,
@@ -168,14 +163,13 @@ def conteudos():
         form.texto.data = ''
         form.slug.data = ''
 
-        # Adicionar uma mensagem de sucesso
+        # Adiciona uma mensagem de sucesso
         flash('Conteúdo postado com sucesso!')
 
         # Redirecionar ou renderizar novamente o template com os dados
         return redirect(url_for('conteudoAluno'))
 
     # Recuperar todos os conteúdos do banco de dados
-    
 
     # Renderizar o template, passando o formulário e os conteúdos
     return render_template('adm/conteudos.html', form=form)
@@ -189,19 +183,18 @@ def conteudoAluno():
 
 
 
-
-# Página de digitação ##############################################
+# Página de digitação ----------------------------------------------------------------------------------------------------
 @app.route("/Digitacao")
 def digita():
     return render_template('aluno/digitacao.html')
 
 
-# Página inicial do adm ##############################################
+# Página inicial do adm ----------------------------------------------------------------------------------------------------
 @app.route("/Administrador")
 def administrador():
     return render_template('adm/inicio_professor.html')
-############################################## FINALIZA A APLICAÇÃO ##############################################
 
 
+# FINALIZA A APLICAÇÃO ----------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug = True)
