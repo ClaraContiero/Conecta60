@@ -5,21 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/digitacao/digitacao.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='js/digitacao.js')}}">
+    <script src="{{url_for('static', filename='js/digitacao.js')}}" defer></script>
     <title>Document</title>
 
 </head>
 
 <body>
 
-    {%include 'header.html'%}
+    {%include 'header_sair.html'%}
 
     {%block content%}
 
     <main>
         <section id="atv-digit">
             <h1 id="titulo_ativ">Atividade 1: digite corretamente</h1>
-            <!-- <h2 id="letras">fffffffffff jjjjjjjjjjj ffffffffff jjjjjjj fjfjffjfjfjfjfjfj</h2> lembrando que esse texto vai ser definido em um array sla, que o prof pode editar -->
+            <h2 id="letras">oiii meu nome é</h2> <!---lembrando que esse texto vai ser definido em um array sla, que o prof pode editar -->
             <section id="teclado">
                 <div class="container">
                     <div class="row zero">

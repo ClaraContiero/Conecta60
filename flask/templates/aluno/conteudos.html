@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/conteudos/conteudos.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+  <!-- <script src="{{url_for('static', filename='js/textarea.js')}}" defer></script> -->
+  <!-- <script src="{{url_for('static', filename='js/menu.js')}}" defer></script> -->
+
+  <title>Document</title>
+
+</head>
+
+<body>
+
+  {%include 'header.html'%}
+
+  {%block content%}
+
+  <main>
+    <h1>POST</h1>
+
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+      {{form.titulo(class = 'titulo textarea', oninput="autoResize(this)" )}}
+
+      {{form.subtitulo(class = 'subtitulo textarea')}}
+
+      {{form.texto(class = 'textos textarea')}}
+
+      {{form.slug(class = 'textos textarea')}}
+
+      {{ form.submit(class = 'but_submit')}}
+
+    </form>
+
+
+    {% for conteudo in conteudos %}
+    <div>
+        <h3>{{ conteudo.titulo }}</h3>
+        <h4>{{ conteudo.subtitulo }}</h4>
+        <p>{{ conteudo.texto }}</p>
+    </div>
+{% endfor %}
+
+
+
+  </main>
+
+
+  {%endblock%}
+
+  {%include 'footer.html'%}
+
+
+</body>
+
+</html>

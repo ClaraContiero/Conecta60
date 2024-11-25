@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/login_cadastro/style_loginCadastro.css')}}">
-    <title>Entrar</title>
+    <title>Cadastro</title>
+
 </head>
 
 <body>
@@ -17,17 +18,15 @@
 
     <main>
         <section id="cadastro">
-            <h1>ENTRAR</h1>
-            <form method="POST">
-                {{ form.email.label(class = 'label')}}
-                {{ form.email(class = 'input') }}
-
-                {{ form.senha.label(class = 'label')}}
-                {{ form.senha(class = 'input') }}
-
-                {{ form.enviar(class = 'but_submit')}}
-                <p>Não possui uma conta? <a href="cadProfAluno">Crie uma conta</a></p>
-            </form>
+            <h1>CADASTRO</h1>
+            <div id="vertente">
+                <p id="como">Cadastre-se como</p>
+                <div id="botoes">
+                    <a href="Cadastre-se"><button id="aluno">ALUNO</button></a>
+                    <a href="Cadastre-se"><button id="professor">PROFESSOR</button></a>
+                </div>
+                <p>Já tem uma conta? <a href="Login_Categoria">Entre na sua conta</a></p>
+            </div>
         </section>
     </main>
 
