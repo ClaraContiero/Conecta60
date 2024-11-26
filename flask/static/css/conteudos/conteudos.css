@@ -7,6 +7,7 @@
  form h1 {
   color: #569B51;
   font-size: 3rem;
+  text-align: center;
 
  }
 
@@ -43,6 +44,7 @@
    font-size: 1.2rem;
    font-weight: 500;
    margin-top: 2rem;
+   width: 20rem;
  }
 
  #submit:hover {
@@ -74,7 +76,7 @@
 
 
  .subtitulo,
- .titulo {
+ .titulo, .slug {
    font-size: 1.5rem;
    font-weight: 500;
 
@@ -87,16 +89,6 @@
 
 
  }
-
- form button {
-   background-color: #569B51;
-   border: none;
-   border-radius: 8px;
-   padding: 5px 10px;
-   color: white;
-   transition: 0.5s;
- }
-
 
 
  .menu-container {

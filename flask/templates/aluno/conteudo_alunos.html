@@ -26,6 +26,8 @@
             {{post.texto}} <br>
             <br>
             <a href="{{url_for('post', id_conteudo = post.id_conteudo)}}"><button>Ver Conteúdo</button></a>
+            <a href="{{url_for('editar_post', id_conteudo = post.id_conteudo)}}"><button>Editar</button></a>
+       
         </div>
         <br> <br>
         {%endfor%}

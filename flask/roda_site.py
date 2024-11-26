@@ -14,9 +14,9 @@ def create_app():
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
@@ -138,7 +138,7 @@ class postConteudo(FlaskForm):
     titulo = StringField('Título:', validators=[DataRequired()], render_kw={"placeholder": "Digite o título aqui..."})
     subtitulo = StringField('Subtítulo:', validators=[DataRequired()], render_kw={"placeholder": "Digite o subtítulo aqui..."})
     texto = StringField('Texto:', validators=[DataRequired()], widget=TextArea(), render_kw={"placeholder": "Digite o texto aqui..."})
-    slug = StringField('Slug', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
+    slug = StringField('Slug:', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
     submit = SubmitField('Salvar e Publicar')
 
 @app.route("/AddConteudo", methods=['GET', 'POST'])
@@ -184,6 +184,29 @@ def posts():
 def post(id_conteudo):
     post = tabela_conteudos.query.get_or_404(id_conteudo)
     return render_template('aluno/post.html', post = post)
+
+@app.route('/Posts/edit/<int:id_conteudo>', methods=['GET', 'POST'])
+def editar_post(id_conteudo):
+    post = tabela_conteudos.query.get_or_404(id_conteudo)
+    form = postConteudo()
+    if form.validate_on_submit():
+        post.titulo = form.titulo.data
+        post.subtitulo = form.subtitulo.data
+        post.texto = form.texto.data
+        post.slug = form.slug.data
+
+        # Atualizando o banco de dados
+        db.session.add(post)
+        db.session.commit()
+        flash('Post atualizado.')
+        return redirect(url_for('post', id_conteudo = post.id_conteudo))
+    form.titulo.data = post.titulo
+    form.subtitulo.data = post.subtitulo
+    form.texto.data = post.texto
+    form.slug.data = post.slug
+    return render_template('adm/editar_post.html', form=form)
+    
+
 
 
 # Página de digitação ----------------------------------------------------------------------------------------------------
