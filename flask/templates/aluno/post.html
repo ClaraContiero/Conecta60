@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/modulos/modulos.css')}}">
-    <script src="{{url_for('static', filename='js/digitacao.js')}}" defer></script>
-    <title>Document</title>
+    <script src="{{url_for('static', filename='js/modulo.js')}}" defer></script>
 
+    <title>Document</title>
 </head>
 
 <body>
@@ -19,32 +19,19 @@
     <main>
         <h1>BLOG POSTS</h1>
         <br>
-        {%for post in posts%}
         <div class="conteudos">
             <h1>{{post.titulo}}</h1> <br>
             {{post.subtitulo}}<br>
             {{post.texto}} <br>
-            <br>
-            <a href="{{url_for('post', id_conteudo = post.id_conteudo)}}"><button>Ver Conteúdo</button></a>
         </div>
         <br> <br>
-        {%endfor%}
-
-
-
+        <a href="{{url_for('posts')}}"><button>Voltar</button></a>
+        
     </main>
-
-
-    <!-- PARA GERAR UM PDF DO CONTEÚDO https://pythonhosted.org/Flask-WeasyPrint/ -->
-
 
     {%endblock%}
 
     {%include 'footer.html'%}
-
-
-
-
 
 </body>
 

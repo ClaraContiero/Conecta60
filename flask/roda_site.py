@@ -15,8 +15,8 @@ def create_app():
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
     #app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
@@ -167,20 +167,23 @@ def conteudos():
         flash('Conteúdo postado com sucesso!')
 
         # Redirecionar ou renderizar novamente o template com os dados
-        return redirect(url_for('conteudoAluno'))
+        return redirect(url_for('conteudos'))
 
     # Recuperar todos os conteúdos do banco de dados
-
-    # Renderizar o template, passando o formulário e os conteúdos
-    return render_template('adm/conteudos.html', form=form)
-
-
-@app.route("/ConteudoAluno")
-def conteudoAluno():
-    # Renderizar o template, passando o formulário e os conteúdos
     all_conteudos = tabela_conteudos.query.all()
-    return render_template('aluno/conteudo_alunos.html', conteudos=all_conteudos)
+    # Renderizar o template, passando o formulário e os conteúdos
+    return render_template('adm/conteudos.html', form=form, conteudos=all_conteudos)
 
+# Página dos posts ----------------------------------------------------------------------------------------------------
+@app.route('/Posts')
+def posts():
+    posts = tabela_conteudos.query.order_by(tabela_conteudos.titulo)
+    return render_template('aluno/conteudo_alunos.html', posts = posts )
+
+@app.route('/Posts/<int:id_conteudo>')
+def post(id_conteudo):
+    post = tabela_conteudos.query.get_or_404(id_conteudo)
+    return render_template('aluno/post.html', post = post)
 
 
 # Página de digitação ----------------------------------------------------------------------------------------------------
