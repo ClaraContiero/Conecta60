@@ -14,9 +14,9 @@ def create_app():
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
@@ -118,11 +118,6 @@ def login():
     return render_template('geral/login.html',
         name = name,
         form = form)
-
-# Página de módulos ----------------------------------------------------------------------------------------------------
-@app.route("/Modulos")
-def modulos():
-    return render_template('aluno/modulos.html')
 
 # Página de conteúdos ----------------------------------------------------------------------------------------------------
 class tabela_conteudos(db.Model):
