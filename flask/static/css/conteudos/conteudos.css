@@ -41,7 +41,7 @@
    padding: 5px 10px;
    color: white;
    transition: 0.5s;
-   font-size: 1.2rem;
+   font-size: 1.5rem;
    font-weight: 500;
    margin-top: 2rem;
    width: 20rem;
@@ -83,7 +83,7 @@
  }
 
  .textos {
-   font-size: 1.2rem;
+   font-size: 1.5rem;
    line-height: 2rem;
    height: 10rem;
 
@@ -100,7 +100,7 @@
   
   label {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 2rem;
   }
   
   .menu {
@@ -110,7 +110,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 1.2rem;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }

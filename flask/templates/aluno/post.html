@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/modulos/modulos.css')}}">
     <script src="{{url_for('static', filename='js/modulo.js')}}" defer></script>
 
-    <title>Document</title>
+    <title>{{post.titulo}}</title>
 </head>
 
 <body>
@@ -26,6 +26,9 @@
         </div>
         <br> <br>
         <a href="{{url_for('posts')}}"><button>Voltar</button></a>
+        <a href="{{url_for('editar_post', id_conteudo = post.id_conteudo)}}"><button>Editar</button></a>
+        <a href="{{url_for('deletar_post', id_conteudo = post.id_conteudo)}}"><button>Deletar</button></a>
+   
         
     </main>
 

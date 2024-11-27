@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/modulos/modulos.css')}}">
     <script src="{{url_for('static', filename='js/digitacao.js')}}" defer></script>
-    <title>Document</title>
+    <title>Página de Posts</title>
 
 </head>
 
@@ -23,10 +23,10 @@
         <div class="conteudos">
             <h1>{{post.titulo}}</h1> <br>
             {{post.subtitulo}}<br>
-            {{post.texto}} <br>
             <br>
             <a href="{{url_for('post', id_conteudo = post.id_conteudo)}}"><button>Ver Conteúdo</button></a>
             <a href="{{url_for('editar_post', id_conteudo = post.id_conteudo)}}"><button>Editar</button></a>
+            <a href="{{url_for('deletar_post', id_conteudo = post.id_conteudo)}}"><button>Deletar</button></a>
        
         </div>
         <br> <br>
