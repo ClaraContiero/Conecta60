@@ -6,11 +6,14 @@ from wtforms import validators
 from werkzeug.security import generate_password_hash
 from extensions import db
 from wtforms.widgets import TextArea
+from flask_ckeditor import CKEditor
+from flask_ckeditor import CKEditorField
 
 
 # COMANDO PARA RODAR O SITE ----------------------------------------------------------------------------------------------------
 def create_app():
     app = Flask(__name__)
+    ckeditor = CKEditor(app)
     
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
@@ -132,7 +135,8 @@ class tabela_conteudos(db.Model):
 class postConteudo(FlaskForm):
     titulo = StringField('Título:', validators=[DataRequired()], render_kw={"placeholder": "Digite o título aqui..."})
     subtitulo = StringField('Subtítulo:', validators=[DataRequired()], render_kw={"placeholder": "Digite o subtítulo aqui..."})
-    texto = StringField('Texto:', validators=[DataRequired()], widget=TextArea(), render_kw={"placeholder": "Digite o texto aqui..."})
+    #texto = StringField('Texto:', validators=[DataRequired()], widget=TextArea(), render_kw={"placeholder": "Digite o texto aqui..."})
+    texto = CKEditorField('Texto', validators=[DataRequired()], render_kw={"placeholder": "Digite o texto aqui..."})  
     slug = StringField('Slug:', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
     submit = SubmitField('Salvar e Publicar')
 

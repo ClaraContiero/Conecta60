@@ -22,6 +22,15 @@ text-align: center;
 
 }
 
+.conteudos p, li {
+    color: #2D2D2D;
+    font-size: 1.4rem;
+}
+
+.conteudos img {
+    border-radius: 0.5rem;
+}
+
 .modulo-principal {
     display: flex;
     flex-direction: column;
@@ -49,11 +58,11 @@ text-align: center;
     font-weight: 500;
     border-radius: 8px;
     background-color: white;
-    border: 2px solid rgb(216, 0, 0);
+    border: 2px solid #45a049;
 
 }
 .conteudo button:hover {
-    background-color: rgb(216, 0, 0);
+    background-color: #45a049;
     color: white;
     scale: 1.10;
 

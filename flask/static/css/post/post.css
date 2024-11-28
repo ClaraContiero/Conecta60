@@ -1,0 +1,69 @@
+main {
+    font-family: "Akatab", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+h2 {
+    font-size: 2rem;
+
+}
+
+.titulosGrandes {
+    color: #2D2D2D;
+    text-align: center;
+}
+
+p #texto {
+    font-size: 1.5rem;
+    color: #2D2D2D;
+    font-weight: 500;
+    line-height: 2.4rem;
+
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-self: center;
+
+}
+
+.botoes_principais {
+    width: 6rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: #f1f1f1;
+    border: 2px solid #45a049;
+    color: #2D2D2D;
+
+}
+
+.botoes_principais:hover {
+    background-color: #45a049;
+    color: white;
+    scale: 1.10;
+
+}
+
+#delet {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #2D2D2D;
+    background-color: #f1f1f1;
+    border: 2px solid rgb(216, 0, 0);
+}
+
+#delet:hover {
+    background-color: rgb(216, 0, 0);
+    color: white;
+    scale: 1.10;
+
+}
