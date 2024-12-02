@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/modulos/modulos.css')}}">
+    <script src="{{url_for('static', filename='js/digitacao.js')}}" defer></script>
+    <script src="{{url_for('static', filename='js/modulo.js')}}" defer></script>
+
+    <title>Página de Módulos</title>
+
+</head>
+
+<body>
+
+    {%include 'header_sair.html'%}
+
+    {%block content%}
+
+    <section id="modulos-teoria">
+
+        <div class="modulo-principal">
+            <h1 id="titulo-pag">Módulos</h1>
+            <a href="{{url_for('modulos')}}"><button id="criarModulo">Adicionar Módulo</button></a>
+            {% for modulo in modulos %}
+            <div class="modulo" id="modulo-{{ modulo.id_modulo }}">
+                <div class="tit-modulo">
+                    <h1>{{ modulo.titulo }}</h1>
+                    <p class="toggle">▶</p>
+                </div>
+                <div class="conteudos" id="conteudos-{{ modulo.id_modulo }}">
+                    <div class="alteracoes">
+                        <div id="links">
+                            <a href="{{url_for('editar_modulo', id_modulo = modulo.id_modulo)}}">Editar</a>
+                            <a href="{{url_for('deletar_modulo', id_modulo = modulo.id_modulo)}}">Deletar</a>
+                            <a href="{{url_for('conteudos', id_modulo = modulo.id_modulo)}}">Criar Conteúdo</a>
+                        </div>
+                    </div>
+                    <h2>{{ modulo.descricao }}</h2>
+                    {% for post in posts %}
+                    <div class="conteudo">
+                        <h3>{{ post.titulo }}</h3>
+                        <a href="{{ url_for('post', id_conteudo=post.id_conteudo) }}"><button>Ver Conteúdo</button></a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </section>
+
+    </main>
+
+
+    <!-- PARA GERAR UM PDF DO CONTEÚDO https://pythonhosted.org/Flask-WeasyPrint/ -->
+
+
+    {%endblock%}
+
+    {%include 'footer.html'%}
+
+
+
+
+
+</body>
+
+</html>
