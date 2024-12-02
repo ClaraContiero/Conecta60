@@ -20,8 +20,8 @@ def create_app():
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
@@ -187,6 +187,8 @@ def posts():
 def post(id_conteudo):
     post = tabela_conteudos.query.get_or_404(id_conteudo)
     return render_template('adm/post.html', post = post)
+
+
 
 @app.route('/Posts/Editar/<int:id_conteudo>', methods=['GET', 'POST'])
 def editar_post(id_conteudo):
