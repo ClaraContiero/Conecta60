@@ -19,49 +19,23 @@
 
 <body>
 
-    {%include 'header.html'%}
+    {%include 'header_sair.html'%}
 
     {%block content%}
 
     <main>
-        <button>Ver alunos</button>
-        <a href="Modulos"><button>Criar Módulo</button></a> 
+        <h1 id="saudar">Olá, {nome}</h1>
+        <div class="acoes">
+            <a href="" ><button class="acoes-adm">Ver alunos</button></a>
+            <a href="Posts"><button class="acoes-adm" >Criar Módulos</button></a>
+        </div>
 
-
-        <h1 id="saudar">Olá, Joana!</h1>
-
-        <section id="turmas">
-            <h2>Suas turmas: </h2>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section> 
+        <!-- - modulos
+        - tela do admnistrador
+        - alterar dados de cadastro
+        - tela da digitação
+        - fazer modal de certeza que quer apagar? -->
+    
     </main>
 
     {%endblock%}

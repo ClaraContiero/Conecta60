@@ -20,8 +20,8 @@ def create_app():
     # Configuração da chave secreta e do banco de dados
     app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
     
@@ -105,6 +105,26 @@ def cadastrar():
     return render_template('geral/cadastro.html', form = form, name = name)
 
 
+@app.route('/Administrador/Editar/<int:id_cadastro>', methods=['GET', 'POST'])
+def editar_cadastro(id_cadastro):
+    cad = tabela_cadastro.query.get_or_404(id_cadastro)
+    form = cadastro()
+    if form.validate_on_submit():
+        cad.nome_completo = form.nome_completo.data
+        cad.email = form.email.data
+        cad.senha = form.senha.data
+
+        # Atualizando o banco de dados
+        db.session.add(cad)
+        db.session.commit()
+        flash('Cadastro Atualizado.')
+        return redirect(url_for('administrador', id_cadastro = cad.id_cadastro))
+    form.nome_completo.data = cad.nome_completo
+    form.email.data = cad.email
+    form.senha.data = cad.senha
+    return render_template('adm/adm_editar_perfil.html', form=form)
+    
+
 # Página de login ----------------------------------------------------------------------------------------------------
 class logar(FlaskForm):
     email = EmailField('Email *', validators=[DataRequired()])
@@ -143,8 +163,8 @@ class postConteudo(FlaskForm):
     slug = StringField('Slug:', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
     submit = SubmitField('Salvar e Publicar')
 
-@app.route("/AddConteudo", methods=['GET', 'POST'])
-def conteudos():
+@app.route("/AddConteudo/<int:id_modulo>", methods=['GET', 'POST'])
+def conteudos(id_modulo):
     form = postConteudo()
 
     if form.validate_on_submit():
@@ -153,7 +173,8 @@ def conteudos():
             titulo=form.titulo.data, 
             subtitulo=form.subtitulo.data,
             texto=form.texto.data, 
-            slug=form.slug.data)
+            slug=form.slug.data,
+            id_modulo = id_modulo)
         
         # Adicionar o novo conteúdo ao banco de dados
         db.session.add(post)
@@ -235,6 +256,8 @@ class tabela_modulos(db.Model):
     id_modulo = db.Column(db.Integer, primary_key = True)
     titulo = db.Column(db.String(255))
     descricao = db.Column(db.String(255))
+    conteudo = db.relationship('tabela_conteudos', backref='modulo', lazy=True)
+
     # ver vídeo do migration
 
 class postModulo(FlaskForm):

@@ -118,3 +118,13 @@ textarea:focus, input:focus, select:focus {
     border: 0 none;
     outline: 0;
 } 
+
+#editar-perfil {
+    transition: 0.5;
+}
+
+#editar-perfil:hover {
+    scale: 1.02;
+    color: #569B51;
+    text-decoration: underline;
+}

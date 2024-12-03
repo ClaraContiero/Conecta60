@@ -21,7 +21,7 @@
     <section id="modulos-teoria">
 
         <div class="modulo-principal">
-            <h1 id="titulo-pag">Módulos</h1>
+            <h1 id="titulo-pag">Módulos de Aprendizagem</h1>
             {% for modulo in modulos %}
             <div class="modulo" id="modulo-{{ modulo.id_modulo }}">
                 <div class="tit-modulo">
@@ -30,10 +30,10 @@
                 </div>
                 <div class="conteudos" id="conteudos-{{ modulo.id_modulo }}">
                     <h2>{{ modulo.descricao }}</h2>
-                    {% for post in posts %}
-                    <div class="conteudo">
+                    {% for post in modulo.conteudo %} <div class="conteudo">
                         <h3>{{ post.titulo }}</h3>
-                        <a href="{{ url_for('lerPost', id_conteudo=post.id_conteudo) }}"><button>Ver Conteúdo</button></a>
+                        <a href="{{ url_for('lerPost', id_conteudo=post.id_conteudo) }}"><button>Ver
+                                Conteúdo</button></a>
                     </div>
                     {% endfor %}
                 </div>
