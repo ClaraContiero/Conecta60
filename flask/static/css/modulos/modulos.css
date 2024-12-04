@@ -22,9 +22,9 @@ text-align: center;
 
 }
 
-.conteudos p, li {
+.conteudos p, li, pre {
     color: #2D2D2D;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 .conteudos img {
@@ -146,3 +146,53 @@ text-align: center;
     transition: 0.4s;
 }
 
+.aviso {
+    background-color: rgb(216, 0, 0);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    height: 5rem;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+
+}
+
+.botoes-simNao {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+
+.botoes-simNao button {
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: #2D2D2D;
+    transition: 0.5s;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    width: 5rem;
+    
+}
+
+.botoes-simNao button:hover{
+    background-color: #2D2D2D;
+    color: white;
+
+}
+
+.aviso h2 {
+    color: white;
+}
+
+.pratica {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3rem;
+}

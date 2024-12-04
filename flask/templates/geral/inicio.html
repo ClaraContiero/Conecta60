@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/pagina_inicial/inicial.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styleGeral.css')}}">
+    <script src="{{url_for('static', filename='js/movimento.js')}}" defer></script>
+
     <title>Página Inicial</title>
 
 </head>
@@ -19,13 +21,13 @@
     <main>
         <section id="imagens">
             <div class="infos">
-                <img src="{{url_for('static', filename='img/Group 1.png')}}" alt="">
+                <img class="img" src="{{url_for('static', filename='img/Group 1.png')}}" alt="">
                 <div id="aluProf">
                     <p> Para qualquer pessoa acima de 60 anos que queira dominar as boas práticas básicas da tecnologia.
                     </p>
                     <div id="botoes">
-                        <a href="Entrar"><button>Alunos</button></a>
-                        <a href="Entrar"><button>Professores</button></a>
+                        <a href="Entrar_como_aluno"><button>Alunos</button></a>
+                        <a href="Entrar_como_adm"><button>Professores</button></a>
                     </div>
                 </div>
             </div>
@@ -38,11 +40,11 @@
                         <li>Prática de digitação</li>
                     </ul>
                 </div>
-                <img src="{{url_for('static', filename='img/Group 2.png')}}" alt="">
+                <img class="img" src="{{url_for('static', filename='img/Group 2.png')}}" alt="">
             </div>
 
             <div class="infos">
-                <img src="{{url_for('static', filename='img/Group 3.png')}}" alt="">
+                <img class="img" src="{{url_for('static', filename='img/Group 3.png')}}" alt="">
                 <div class="lista">
                     <p>Aprenda a navegar na internet de forma segura e sem preocupações</p>
                     <ul>

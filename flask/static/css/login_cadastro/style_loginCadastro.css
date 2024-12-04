@@ -60,6 +60,8 @@ p a:hover {
 #vertente {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 25px;
     margin-top: 3%;
 }
@@ -100,6 +102,7 @@ p a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .but_submit{

@@ -24,6 +24,13 @@
             <h1 id="titulo-pag">Criar e Editar Módulos</h1>
             <a href="{{url_for('modulos')}}"><button id="criarModulo">Adicionar Módulo</button></a>
             {% for modulo in modulos %}
+            <div class="aviso"> 
+                <h2>Tem certeza que deseja deletar esse módulo?</h2>
+                <div class="botoes-simNao">
+                    <a href="{{ url_for('deletar_modulo', id_modulo=modulo.id_modulo) }}"><button>SIM</button></a>
+                    <button id="cancelar">NÃO</button> <!-- Adicionado ID para cancelar -->
+                </div>
+            </div>
             <div class="modulo" id="modulo-{{ modulo.id_modulo }}">
                 <div class="tit-modulo">
                     <h1>{{ modulo.titulo }}</h1>
@@ -32,9 +39,11 @@
                 <div class="conteudos" id="conteudos-{{ modulo.id_modulo }}">
                     <div class="alteracoes">
                         <div id="links">
-                            <a href="{{url_for('editar_modulo', id_modulo = modulo.id_modulo)}}">Editar</a>
-                            <a href="{{url_for('deletar_modulo', id_modulo = modulo.id_modulo)}}">Deletar</a>
-                            <a href="{{url_for('conteudos', id_modulo = modulo.id_modulo)}}">Criar Conteúdo</a>
+                            <a href="{{ url_for('editar_modulo', id_modulo=modulo.id_modulo) }}">Editar</a>
+                            <a id="deletar">Deletar</a>
+                            <a href="{{ url_for('conteudos', id_modulo=modulo.id_modulo) }}">Criar Conteúdo</a>
+                    
+                         
                         </div>
                     </div>
                     <h2>{{ modulo.descricao }}</h2>
@@ -48,9 +57,12 @@
             </div>
             {% endfor %}
         </div>
-        </div>
-    </section>
 
+
+        </div>
+        
+    </section>
+    
     </main>
 
 

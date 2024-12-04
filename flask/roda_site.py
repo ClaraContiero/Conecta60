@@ -3,43 +3,45 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, EmailField, PasswordField, TextAreaField, FileField, RadioField
 from wtforms.validators import DataRequired, regexp
 from wtforms import validators
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from extensions import db
 from wtforms.widgets import TextArea
 from flask_ckeditor import CKEditor
 from flask_ckeditor import CKEditorField
 from flask_migrate import Migrate
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 
 
 # COMANDO PARA RODAR O SITE ----------------------------------------------------------------------------------------------------
+login_manager = LoginManager()
+
 def create_app():
     app = Flask(__name__)
     ckeditor = CKEditor(app)
-    
-    # Configuração da chave secreta e do banco de dados
-    app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://BD070324136:Ulfea9@BD-ACD/BD070324136"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///meubanco.db"
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@localhost/clara_banco"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
 
-    
-    # Inicializar o SQLAlchemy com o app
+    # Configurações do aplicativo
+    app.config['SECRET_KEY'] = "minhaSenhaHiperUltraMegaBlasterSecreta"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123@localhost/projetoi"
+
+    # Inicializar extensões
     db.init_app(app)
     migrate = Migrate(app, db)
+    login_manager.init_app(app)
+    login_manager.login_view = 'login_adm'
 
     with app.app_context():
         db.create_all()
-    
+
     return app
 
 app = create_app()
 
+
 # ROTAS PARA AS PÁGINAS ----------------------------------------------------------------------------------------------------
 
 # Página Inicial ----------------------------------------------------------------------------------------------------
-@app.route("/")
+@app.route("/Inicial")
 def inicial():
     return render_template('geral/inicio.html')
 
@@ -54,33 +56,86 @@ def cadProfAluno():
     return render_template('geral/cadastroProfAlun.html')
 
 
-# Página de cadastro ----------------------------------------------------------------------------------------------------
-class tabela_cadastro(db.Model): 
-    __tablename__ = 'cadastro'
+# Página de cadastro ADMINISTRADOR----------------------------------------------------------------------------------------------------
+class tabela_cadastro_adm(db.Model): 
+    __tablename__ = 'cadastro_adm'
     id_cadastro = db.Column(db.Integer, primary_key = True)
     nome_completo = db.Column(db.String(100), nullable = False)
     email = db.Column(db.String(100), nullable = False, unique = True)
     data_nasc = db.Column(db.Date, nullable = False)
     senha = db.Column(db.String(256), nullable = False)
 
-class cadastro(FlaskForm):
+class cadastro_adm(FlaskForm):
     data_nasc = DateField('Data de Nascimento *', validators=[DataRequired()])
     nome_completo = StringField('Nome Completo *', validators=[DataRequired()])
     email = EmailField('Email *', validators=[DataRequired()])
     senha = PasswordField('Senha *',validators=[DataRequired()])
     enviar = SubmitField('CADASTRAR')
 
-@app.route("/Cadastre-se", methods=['GET', 'POST'])
-def cadastrar():
-    form = cadastro()
+@app.route("/Cadastro_como_adm", methods=['GET', 'POST'])
+def cadastrar_adm():
+    form = cadastro_adm()
     name = None
     #validando o formulario
     if form.validate_on_submit():
-        usuario = tabela_cadastro.query.filter_by(email=form.email.data).first()
+        usuario = tabela_cadastro_adm.query.filter_by(email=form.email.data).first()
         if usuario is None:
             try:
                 senha_hash = generate_password_hash(form.senha.data)
-                usuario = tabela_cadastro(
+                usuario = tabela_cadastro_adm(
+                    data_nasc = form.data_nasc.data,
+                    nome_completo = form.nome_completo.data,
+                    email = form.email.data,
+                    senha = senha_hash
+                )
+                name = form.nome_completo.data
+                db.session.add(usuario)
+                db.session.commit()
+
+                form.data_nasc.data = ''
+                form.nome_completo.data = ''
+                form.nome_usuario.data = ''
+                form.email.data = ''
+                form.senha.data = ''
+
+                flash('Cadastrado com sucesso!')
+                return redirect(url_for('login'))
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Erro ao registrar o usuário: {e}')
+        else:
+                flash('Email já existente.')
+    return render_template('geral/cadastro_adm.html', form = form, name = name)
+
+
+
+# Página de cadastro ALUNO----------------------------------------------------------------------------------------------------
+class tabela_cadastro_aluno(db.Model, UserMixin): 
+    __tablename__ = 'cadastro_aluno'
+    id_cadastro = db.Column(db.Integer, primary_key = True)
+    nome_completo = db.Column(db.String(100), nullable = False)
+    email = db.Column(db.String(100), nullable = False, unique = True)
+    data_nasc = db.Column(db.Date, nullable = False)
+    senha = db.Column(db.String(256), nullable = False)
+
+class cadastro_aluno(FlaskForm):
+    data_nasc = DateField('Data de Nascimento *', validators=[DataRequired()])
+    nome_completo = StringField('Nome Completo *', validators=[DataRequired()])
+    email = EmailField('Email *', validators=[DataRequired()])
+    senha = PasswordField('Senha *',validators=[DataRequired()])
+    enviar = SubmitField('CADASTRAR')
+
+@app.route("/Cadastro_como_aluno", methods=['GET', 'POST'])
+def cadastrar_aluno():
+    form = cadastro_aluno()
+    name = None
+    #validando o formulario
+    if form.validate_on_submit():
+        usuario = tabela_cadastro_aluno.query.filter_by(email=form.email.data).first()
+        if usuario is None:
+            try:
+                senha_hash = generate_password_hash(form.senha.data)
+                usuario = tabela_cadastro_aluno(
                     data_nasc = form.data_nasc.data,
                     nome_completo = form.nome_completo.data,
                     email = form.email.data,
@@ -102,45 +157,58 @@ def cadastrar():
                 flash(f'Erro ao registrar o usuário: {e}')
         else:
                 flash('Email já existente.')
-    return render_template('geral/cadastro.html', form = form, name = name)
+    return render_template('geral/cadastro_aluno.html', form = form, name = name)
 
-
-@app.route('/Administrador/Editar/<int:id_cadastro>', methods=['GET', 'POST'])
-def editar_cadastro(id_cadastro):
-    cad = tabela_cadastro.query.get_or_404(id_cadastro)
-    form = cadastro()
-    if form.validate_on_submit():
-        cad.nome_completo = form.nome_completo.data
-        cad.email = form.email.data
-        cad.senha = form.senha.data
-
-        # Atualizando o banco de dados
-        db.session.add(cad)
-        db.session.commit()
-        flash('Cadastro Atualizado.')
-        return redirect(url_for('administrador', id_cadastro = cad.id_cadastro))
-    form.nome_completo.data = cad.nome_completo
-    form.email.data = cad.email
-    form.senha.data = cad.senha
-    return render_template('adm/adm_editar_perfil.html', form=form)
-    
 
 # Página de login ----------------------------------------------------------------------------------------------------
-class logar(FlaskForm):
+class logar_adm(FlaskForm):
     email = EmailField('Email *', validators=[DataRequired()])
     senha = PasswordField('Senha *',validators=[DataRequired()])
     enviar = SubmitField('ENTRAR')
 
-@app.route("/Entrar")
-def login():
+class logar_aluno(FlaskForm):
+    email = EmailField('Email *', validators=[DataRequired()])
+    senha = PasswordField('Senha *',validators=[DataRequired()])
+    enviar = SubmitField('ENTRAR')
+
+@login_manager.user_loader
+def load_user_adm(id_cadastro):
+    print("Loading user:", id_cadastro)
+    return tabela_cadastro_adm.query.get(int(id_cadastro))
+
+@app.route("/Entrar_como_adm", methods = ['GET', 'POST'])
+# o username é unique = true 
+def login_adm():
+    form = logar_adm()
+    #validando o formulario
+    if form.validate_on_submit():
+        user = tabela_cadastro_adm.query.filter_by(email = form.email.data).first()
+        if user:
+            # confere a senha
+            if check_password_hash(user.senha, form.senha.data):
+                login_user(user)
+                flash('Logado.')
+                return redirect(url_for('posts'))
+            else:
+                flash('Senha errada. Tente de novo.')
+        else:
+            flash('Esse usuário não existe.')
+
+    
+    return render_template('geral/login_adm.html',
+        form = form)
+
+
+@app.route("/Entrar_como_aluno")
+def login_aluno():
     name = None
-    form = logar()
+    form = logar_aluno()
     #validando o formulario
     if form.validate_on_submit():
         name = form.name.data
         form.name.data = ''
         flash('Login realizado com sucesso!')
-    return render_template('geral/login.html',
+    return render_template('geral/login_aluno.html',
         name = name,
         form = form)
 
@@ -159,8 +227,8 @@ class postConteudo(FlaskForm):
     titulo = StringField('Título:', validators=[DataRequired()], render_kw={"placeholder": "Digite o título aqui..."})
     subtitulo = StringField('Subtítulo:', validators=[DataRequired()], render_kw={"placeholder": "Digite o subtítulo aqui..."})
     #texto = StringField('Texto:', validators=[DataRequired()], widget=TextArea(), render_kw={"placeholder": "Digite o texto aqui..."})
-    texto = CKEditorField('Texto', validators=[DataRequired()], render_kw={"placeholder": "Digite o texto aqui..."})  
-    slug = StringField('Slug:', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
+    texto = CKEditorField('Texto:', validators=[DataRequired()], render_kw={"placeholder": "Digite o texto aqui..."})  
+    #slug = StringField('Slug:', validators=[DataRequired()], render_kw={"placeholder": "Digite o slug da página aqui..."})
     submit = SubmitField('Salvar e Publicar')
 
 @app.route("/AddConteudo/<int:id_modulo>", methods=['GET', 'POST'])
@@ -173,7 +241,7 @@ def conteudos(id_modulo):
             titulo=form.titulo.data, 
             subtitulo=form.subtitulo.data,
             texto=form.texto.data, 
-            slug=form.slug.data,
+            #slug=form.slug.data,
             id_modulo = id_modulo)
         
         # Adicionar o novo conteúdo ao banco de dados
@@ -184,7 +252,7 @@ def conteudos(id_modulo):
         form.titulo.data = ''
         form.subtitulo.data = ''
         form.texto.data = ''
-        form.slug.data = ''
+        #form.slug.data = ''
 
         # Adiciona uma mensagem de sucesso
         flash('Conteúdo postado com sucesso!')
@@ -219,7 +287,7 @@ def editar_post(id_conteudo):
         post.titulo = form.titulo.data
         post.subtitulo = form.subtitulo.data
         post.texto = form.texto.data
-        post.slug = form.slug.data
+       #post.slug = form.slug.data
 
         # Atualizando o banco de dados
         db.session.add(post)
@@ -229,7 +297,7 @@ def editar_post(id_conteudo):
     form.titulo.data = post.titulo
     form.subtitulo.data = post.subtitulo
     form.texto.data = post.texto
-    form.slug.data = post.slug
+    #form.slug.data = post.slug
     return render_template('adm/editar_post.html', form=form)
     
 @app.route('/Posts/Deletar/<int:id_conteudo>')
@@ -242,12 +310,12 @@ def deletar_post(id_conteudo):
 
         flash('Post deletado.')
         posts = tabela_conteudos.query.order_by(tabela_conteudos.titulo)
-        return render_template('aluno/conteudo_alunos.html', posts = posts )
+        return redirect(url_for('posts', id_conteudo = post.id_conteudo))
 
     except:
         flash('Houve um problema. Tente novamente.')
         posts = tabela_conteudos.query.order_by(tabela_conteudos.titulo)
-        return render_template('adm/conteudo_alunos.html', posts = posts )
+    return render_template('adm/conteudo_alunos.html', posts = posts )
 
 
 # Página de módulos
@@ -344,7 +412,10 @@ def digita():
 def administrador():
     return render_template('adm/inicio_professor.html')
 
-
+@app.route("/VerAlunos")
+def verAlunos():
+    alunos = tabela_cadastro_aluno.query.order_by(tabela_cadastro_aluno.nome_completo).all()  # Buscar todos os alunos
+    return render_template('adm/verAlunos.html', alunos=alunos)
 
 # Página inicial do aluno ----------------------------------------------------------------------------------------------------
 

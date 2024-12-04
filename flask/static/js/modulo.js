@@ -1,3 +1,5 @@
+// Exibição dos módulos
+
 document.addEventListener("DOMContentLoaded", () => {
     const modulos = document.querySelectorAll(".modulo");
 
@@ -32,4 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+});
+
+
+
+// Deletar o módulo e conteúdo
+const deletar = document.getElementById('deletar');
+const aviso = document.getElementsByClassName('aviso')[0];
+const cancelar = document.getElementById('cancelar');
+
+deletar.addEventListener("click", () => {
+    aviso.style.display = 'flex';
+});
+
+cancelar.addEventListener("click", () => {
+    aviso.style.display = 'none';
 });

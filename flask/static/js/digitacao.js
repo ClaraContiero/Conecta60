@@ -17,7 +17,7 @@ document.querySelector("body").onkeydown = (event) => {
 
     if (Pressionada === text_aberto[i]) {
         // Se a letra pressionada for a correta
-        let formatado = `<span style="color: green">${text_aberto[i]}</span>`;  // Letra correta colorida de verde
+        let formatado = `<span style="color:#502ffe">${text_aberto[i]}</span>`;  // Letra correta colorida de verde
         let armazen_V = text_aberto.slice(0, i);  // Letras corretas até o momento
         i = i + 1;
         Qtd_Letras_Certas = Qtd_Letras_Certas + 1;

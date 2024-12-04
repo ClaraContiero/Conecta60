@@ -9,10 +9,8 @@ body {
     flex-direction: row;
     align-items: center;
     text-align: center;
-    border: solid 1px #acacac;
-    border-radius: 8px;
-    background-color: white;
     padding: 1%;
+    gap: 1.5rem;
 
 }
 

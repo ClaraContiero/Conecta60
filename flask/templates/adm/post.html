@@ -18,6 +18,13 @@
     {%block content%}
 
     <main>
+        <div class="aviso"> 
+            <h2>Tem certeza que deseja deletar esse conteúdo?</h2>
+            <div class="botoes-simNao">
+                <a href="{{ url_for('deletar_post', id_conteudo=post.id_conteudo) }}"><button>SIM</button></a>
+                <button id="cancelar">NÃO</button> <!-- Adicionado ID para cancelar -->
+            </div>
+        </div>
         <div class="conteudos">
             <div class="titulosGrandes">
                 <h1>{{post.titulo}}</h1>
@@ -29,7 +36,7 @@
             <a href="{{url_for('posts')}}"><button class="botoes_principais">Voltar</button></a>
             <a href="{{url_for('editar_post', id_conteudo = post.id_conteudo)}}"><button
                     class="botoes_principais">Editar</button></a>
-            <a href="{{url_for('deletar_post', id_conteudo = post.id_conteudo)}}"><button class="botoes_principais"
+            <a id="deletar"><button class="botoes_principais"
                     id="delet">Deletar</button></a>
         </div>
 
